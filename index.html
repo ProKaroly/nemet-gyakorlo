@@ -17,8 +17,8 @@ button.active,.primary{background:var(--accent);color:white}.panel{display:none}
 .flash .word{font-size:36px;font-weight:800}.flash .meaning{font-size:22px;color:var(--muted);margin-top:18px;display:none}.flash.reveal .meaning{display:block}
 .actions{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-top:18px}.good{background:#e7f7ef;color:#147348}.bad{background:#fdecec;color:#a22b2b}
 select,input{border:1px solid var(--border);border-radius:12px;padding:11px 12px;font-size:15px;background:white}
-.filters{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px}.list{display:grid;gap:8px}.row{display:grid;grid-template-columns:1fr 1fr auto;gap:12px;align-items:center;background:white;border:1px solid var(--border);border-radius:12px;padding:12px}
-.tag{font-size:12px;color:#536178;background:#eef1f6;padding:5px 8px;border-radius:999px}
+.filters{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px}.list{display:grid;gap:8px}.row{display:grid;grid-template-columns:1fr 1fr auto auto;gap:12px;align-items:center;background:white;border:1px solid var(--border);border-radius:12px;padding:12px}
+.tag{font-size:12px;color:#536178;background:#eef1f6;padding:5px 8px;border-radius:999px}.speakIcon{padding:7px 9px;border-radius:10px;background:#eef1ff;color:#2949c7;font-size:16px;line-height:1}
 .quizq{font-size:21px;font-weight:800;margin-bottom:16px}.opt{width:100%;text-align:left;margin:7px 0;background:#f1f3f8;color:#24324a}.opt.correct{background:#dcf5e7;color:#13683e}.opt.wrong{background:#fde2e2;color:#982c2c}
 .feedback{margin-top:12px;font-weight:700}.progress{height:9px;background:#e8ebf2;border-radius:999px;overflow:hidden;margin:10px 0 18px}.bar{height:100%;background:var(--accent);width:0}
 .note{font-size:14px;color:var(--muted);line-height:1.5}.hidden{display:none}
@@ -31,23 +31,34 @@ select,input{border:1px solid var(--border);border-radius:12px;padding:11px 12px
     <div><h1>Német gyakorló</h1><div class="sub" id="lessonTitle"></div></div>
     <button onclick="resetProgress()">Haladás törlése</button>
   </div>
+
   <div class="stats">
     <div class="stat"><span>Szavak</span><b id="wordCount">0</b></div>
     <div class="stat"><span>Ismert</span><b id="knownCount">0</b></div>
     <div class="stat"><span>Kvíz legjobb</span><b id="bestScore">0%</b></div>
   </div>
+
   <div class="tabs">
     <button class="active" data-tab="flash">Szókártyák</button>
     <button data-tab="quiz">Kvíz</button>
     <button data-tab="dict">Szótár</button>
   </div>
+
   <section id="flash" class="panel active">
     <div class="filters">
       <select id="category"></select>
       <select id="direction"><option value="dehu">Német → magyar</option><option value="hude">Magyar → német</option></select>
       <button onclick="shuffleCard()">Véletlen szó</button>
       <button onclick="speakCurrent()">🔊 Kiejtés</button>
-      <label class="note" style="display:flex;align-items:center;gap:7px"><input id="autoSpeak" type="checkbox" style="width:auto"> Automatikus felolvasás</label>
+      <select id="voiceSelect" title="Német hang"></select>
+      <select id="rateSelect" title="Beszédsebesség">
+        <option value="0.72">Lassú</option>
+        <option value="0.82" selected>Normál</option>
+        <option value="0.95">Gyorsabb</option>
+      </select>
+      <label class="note" style="display:flex;align-items:center;gap:7px">
+        <input id="autoSpeak" type="checkbox" style="width:auto"> Automatikus felolvasás
+      </label>
     </div>
     <div class="card flash" id="flashcard" onclick="reveal()">
       <div class="tag" id="flashCat"></div>
@@ -56,39 +67,189 @@ select,input{border:1px solid var(--border);border-radius:12px;padding:11px 12px
       <button class="primary" style="margin-top:18px" onclick="event.stopPropagation();speakCurrent()">🔊 Hallgasd meg</button>
       <div class="note" style="margin-top:12px">Kattints a kártyára a megoldáshoz.</div>
     </div>
-    <div class="actions"><button class="bad" onclick="mark(false)">Még nem megy</button><button class="good" onclick="mark(true)">Tudom</button></div>
+    <div class="actions">
+      <button class="bad" onclick="mark(false)">Még nem megy</button>
+      <button class="good" onclick="mark(true)">Tudom</button>
+    </div>
   </section>
-  <section id="quiz" class="panel"><div class="card"><div class="progress"><div id="quizBar" class="bar"></div></div><div id="quizArea"></div></div></section>
-  <section id="dict" class="panel"><div class="filters"><input id="search" placeholder="Keresés németül vagy magyarul…" oninput="renderDict()"></div><div id="dictList" class="list"></div></section>
+
+  <section id="quiz" class="panel">
+    <div class="card">
+      <div class="progress"><div id="quizBar" class="bar"></div></div>
+      <div id="quizArea"></div>
+    </div>
+  </section>
+
+  <section id="dict" class="panel">
+    <div class="filters"><input id="search" placeholder="Keresés németül vagy magyarul…" oninput="renderDict()"></div>
+    <div id="dictList" class="list"></div>
+  </section>
 </div>
+
 <script src="data.js"></script>
 <script>
 const D=window.GERMAN_DATA;
 let known=JSON.parse(localStorage.getItem('knownWords')||'{}');
 let best=Number(localStorage.getItem('bestQuiz')||0);
-let current=0,qIndex=0,qScore=0,quizOrder=[];
+let current=0, qIndex=0, qScore=0, quizOrder=[];
 let germanVoice=null;
-function loadGermanVoice(){const voices=window.speechSynthesis?speechSynthesis.getVoices():[];germanVoice=voices.find(v=>/^de-DE$/i.test(v.lang))||voices.find(v=>/^de/i.test(v.lang))||null}
-if('speechSynthesis' in window){loadGermanVoice();speechSynthesis.onvoiceschanged=loadGermanVoice}
-lessonTitle.textContent=D.lesson;wordCount.textContent=D.vocab.length;
-function updateStats(){knownCount.textContent=Object.values(known).filter(Boolean).length;bestScore.textContent=best+'%'}
-updateStats();autoSpeak.checked=localStorage.getItem('autoSpeak')==='1';autoSpeak.onchange=()=>localStorage.setItem('autoSpeak',autoSpeak.checked?'1':'0');
-document.querySelectorAll('[data-tab]').forEach(b=>b.onclick=()=>{document.querySelectorAll('[data-tab]').forEach(x=>x.classList.remove('active'));document.querySelectorAll('.panel').forEach(x=>x.classList.remove('active'));b.classList.add('active');document.getElementById(b.dataset.tab).classList.add('active');if(b.dataset.tab==='quiz')startQuiz()});
-const cats=['Mind'].concat([...new Set(D.vocab.map(x=>x.cat))]);category.innerHTML=cats.map(c=>`<option>${c}</option>`).join('');category.onchange=shuffleCard;direction.onchange=showCard;
-function filtered(){return D.vocab.filter(x=>category.value==='Mind'||x.cat===category.value)}
-function shuffleCard(){const arr=filtered();if(!arr.length)return;const pick=arr[Math.floor(Math.random()*arr.length)];current=D.vocab.indexOf(pick);showCard()}
-function showCard(){const w=D.vocab[current]||D.vocab[0];flashCat.textContent=w.cat;if(direction.value==='dehu'){flashFront.textContent=w.de;flashBack.textContent=w.hu}else{flashFront.textContent=w.hu;flashBack.textContent=w.de}flashcard.classList.remove('reveal');if(autoSpeak.checked)setTimeout(speakCurrent,180)}
-function speakCurrent(){if(!('speechSynthesis' in window)){alert('Ez a böngésző nem támogatja a beszédszintézist.');return}const w=D.vocab[current]||D.vocab[0];const u=new SpeechSynthesisUtterance(w.de);u.lang='de-DE';u.rate=.82;u.pitch=1;if(germanVoice)u.voice=germanVoice;speechSynthesis.cancel();speechSynthesis.speak(u)}
+let germanVoices=[];
+
+function scoreVoice(v){
+  const n=(v.name||'').toLowerCase();
+  let s=0;
+  if(/^de-DE$/i.test(v.lang)) s+=20;
+  else if(/^de/i.test(v.lang)) s+=10;
+  if(/anna|petra|google deutsch|microsoft.*german|katja|conrad|vicki|markus/.test(n)) s+=12;
+  if(/enhanced|premium|natural/.test(n)) s+=8;
+  if(v.localService) s+=2;
+  return s;
+}
+
+function loadGermanVoice(){
+  if(!('speechSynthesis' in window)) return;
+  const voices=speechSynthesis.getVoices();
+  germanVoices=voices.filter(v => /^de/i.test(v.lang)).sort((a,b)=>scoreVoice(b)-scoreVoice(a));
+  voiceSelect.innerHTML='';
+  if(!germanVoices.length){
+    voiceSelect.innerHTML='<option value="">Nincs német hang</option>';
+    germanVoice=null;
+    return;
+  }
+  germanVoices.forEach((v,i)=>{
+    const o=document.createElement('option');
+    o.value=String(i);
+    o.textContent=`${v.name} (${v.lang})`;
+    voiceSelect.appendChild(o);
+  });
+  const saved=localStorage.getItem('germanVoiceName');
+  let idx=saved ? germanVoices.findIndex(v=>v.name===saved) : 0;
+  if(idx<0) idx=0;
+  voiceSelect.value=String(idx);
+  germanVoice=germanVoices[idx];
+}
+if ('speechSynthesis' in window){
+  loadGermanVoice();
+  speechSynthesis.onvoiceschanged=loadGermanVoice;
+}
+voiceSelect.onchange=()=>{
+  germanVoice=germanVoices[Number(voiceSelect.value)]||null;
+  if(germanVoice) localStorage.setItem('germanVoiceName', germanVoice.name);
+  speakCurrent();
+};
+rateSelect.onchange=()=>{
+  localStorage.setItem('speechRate', rateSelect.value);
+  speakCurrent();
+};
+const savedRate=localStorage.getItem('speechRate');
+if(savedRate) rateSelect.value=savedRate;
+
+lessonTitle.textContent=D.lesson;
+wordCount.textContent=D.vocab.length;
+
+function updateStats(){
+  knownCount.textContent=Object.values(known).filter(Boolean).length;
+  bestScore.textContent=best+'%';
+}
+updateStats();
+if (typeof autoSpeak !== 'undefined' && autoSpeak){
+  autoSpeak.checked = localStorage.getItem('autoSpeak') === '1';
+  autoSpeak.onchange = () => localStorage.setItem('autoSpeak', autoSpeak.checked ? '1' : '0');
+}
+
+document.querySelectorAll('[data-tab]').forEach(b=>b.onclick=()=>{
+  document.querySelectorAll('[data-tab]').forEach(x=>x.classList.remove('active'));
+  document.querySelectorAll('.panel').forEach(x=>x.classList.remove('active'));
+  b.classList.add('active'); document.getElementById(b.dataset.tab).classList.add('active');
+  if(b.dataset.tab==='quiz') startQuiz();
+});
+
+const cats=['Mind'].concat([...new Set(D.vocab.map(x=>x.cat))]);
+category.innerHTML=cats.map(c=>`<option>${c}</option>`).join('');
+category.onchange=shuffleCard; direction.onchange=showCard;
+
+function filtered(){
+  return D.vocab.filter(x=>category.value==='Mind'||x.cat===category.value);
+}
+function shuffleCard(){
+  const arr=filtered(); if(!arr.length)return;
+  const pick=arr[Math.floor(Math.random()*arr.length)];
+  current=D.vocab.indexOf(pick); showCard();
+}
+function showCard(){
+  const w=D.vocab[current]||D.vocab[0];
+  flashCat.textContent=w.cat;
+  if(direction.value==='dehu'){flashFront.textContent=w.de;flashBack.textContent=w.hu}
+  else{flashFront.textContent=w.hu;flashBack.textContent=w.de}
+  flashcard.classList.remove('reveal');
+  if(autoSpeak && autoSpeak.checked) setTimeout(speakCurrent, 180);
+}
+
+function speakText(text){
+  if(!('speechSynthesis' in window)){
+    alert('Ez a böngésző nem támogatja a beszédszintézist.');
+    return;
+  }
+  const u=new SpeechSynthesisUtterance(text);
+  u.lang='de-DE';
+  u.rate=Number(rateSelect.value||0.82);
+  u.pitch=1;
+  if(germanVoice) u.voice=germanVoice;
+  speechSynthesis.cancel();
+  speechSynthesis.speak(u);
+}
+
+function speakCurrent(){
+  const w=D.vocab[current]||D.vocab[0];
+  speakText(w.de);
+}
 function reveal(){flashcard.classList.add('reveal')}
-function mark(v){known[D.vocab[current].de]=v;localStorage.setItem('knownWords',JSON.stringify(known));updateStats();shuffleCard()}
-function renderDict(){const s=(search.value||'').toLowerCase();const arr=D.vocab.filter(x=>(x.de+' '+x.hu+' '+x.cat).toLowerCase().includes(s));dictList.innerHTML=arr.map(x=>`<div class="row"><b>${x.de}</b><span>${x.hu}</span><span class="tag">${x.cat}</span></div>`).join('')}
-renderDict();showCard();
-function startQuiz(){qIndex=0;qScore=0;quizOrder=[...D.quiz].sort(()=>Math.random()-.5);renderQ()}
+function mark(v){
+  known[D.vocab[current].de]=v; localStorage.setItem('knownWords',JSON.stringify(known)); updateStats(); shuffleCard();
+}
+
+function renderDict(){
+  const s=(search.value||'').toLowerCase();
+  const arr=D.vocab.filter(x=>(x.de+' '+x.hu+' '+x.cat).toLowerCase().includes(s));
+  dictList.innerHTML=arr.map((x,i)=>`<div class="row"><b>${x.de}</b><span>${x.hu}</span><span class="tag">${x.cat}</span><button class="speakIcon" title="Kiejtés" aria-label="${x.de} kiejtése" data-word-index="${D.vocab.indexOf(x)}">🔊</button></div>`).join('');
+  dictList.querySelectorAll('.speakIcon').forEach(btn=>{
+    btn.onclick=()=>speakText(D.vocab[Number(btn.dataset.wordIndex)].de);
+  });
+}
+renderDict(); showCard();
+
+function startQuiz(){
+  qIndex=0;qScore=0;quizOrder=[...D.quiz].sort(()=>Math.random()-.5);renderQ();
+}
 function norm(s){return s.toLowerCase().trim().replace(/[.!?]/g,'').replace(/ö/g,'o').replace(/ü/g,'u').replace(/ä/g,'a').replace(/ß/g,'ss')}
-function renderQ(){quizBar.style.width=(qIndex/quizOrder.length*100)+'%';if(qIndex>=quizOrder.length){const pct=Math.round(qScore/quizOrder.length*100);if(pct>best){best=pct;localStorage.setItem('bestQuiz',best);updateStats()}quizArea.innerHTML=`<div class="quizq">Kész! ${qScore}/${quizOrder.length} (${pct}%)</div><button class="primary" onclick="startQuiz()">Új kvíz</button>`;quizBar.style.width='100%';return}const q=quizOrder[qIndex];if(q.type==='mc'){quizArea.innerHTML=`<div class="quizq">${qIndex+1}. ${q.q}</div>`+q.opts.map((o,i)=>`<button class="opt" onclick="answerMC(${i},this)">${o}</button>`).join('')+`<div id="fb" class="feedback"></div>`}else{quizArea.innerHTML=`<div class="quizq">${qIndex+1}. ${q.q}</div><input id="textAns" style="width:100%" placeholder="Írd ide a választ"><div class="actions"><button class="primary" onclick="answerText()">Ellenőrzés</button></div><div id="fb" class="feedback"></div>`}}
-function answerMC(i,btn){const q=quizOrder[qIndex],buttons=[...document.querySelectorAll('.opt')];buttons.forEach(b=>b.disabled=true);buttons[q.a].classList.add('correct');if(i===q.a){qScore++;fb.textContent='Helyes ✓'}else{btn.classList.add('wrong');fb.textContent='Nem ez a helyes válasz.'}setTimeout(()=>{qIndex++;renderQ()},700)}
-function answerText(){const q=quizOrder[qIndex],val=norm(textAns.value);const ok=q.answers.some(a=>norm(a)===val);if(ok){qScore++;fb.textContent='Helyes ✓'}else{fb.textContent='Jó válasz: '+q.answers[0]}setTimeout(()=>{qIndex++;renderQ()},1200)}
-function resetProgress(){if(confirm('Biztosan törlöd a helyi haladási adatokat?')){localStorage.removeItem('knownWords');localStorage.removeItem('bestQuiz');known={};best=0;updateStats()}}
+function renderQ(){
+  quizBar.style.width=(qIndex/quizOrder.length*100)+'%';
+  if(qIndex>=quizOrder.length){
+    const pct=Math.round(qScore/quizOrder.length*100); if(pct>best){best=pct;localStorage.setItem('bestQuiz',best);updateStats()}
+    quizArea.innerHTML=`<div class="quizq">Kész! ${qScore}/${quizOrder.length} (${pct}%)</div><button class="primary" onclick="startQuiz()">Új kvíz</button>`;
+    quizBar.style.width='100%'; return;
+  }
+  const q=quizOrder[qIndex];
+  if(q.type==='mc'){
+    quizArea.innerHTML=`<div class="quizq">${qIndex+1}. ${q.q}</div>`+q.opts.map((o,i)=>`<button class="opt" onclick="answerMC(${i},this)">${o}</button>`).join('')+`<div id="fb" class="feedback"></div>`;
+  }else{
+    quizArea.innerHTML=`<div class="quizq">${qIndex+1}. ${q.q}</div><input id="textAns" style="width:100%" placeholder="Írd ide a választ"><div class="actions"><button class="primary" onclick="answerText()">Ellenőrzés</button></div><div id="fb" class="feedback"></div>`;
+  }
+}
+function answerMC(i,btn){
+  const q=quizOrder[qIndex], buttons=[...document.querySelectorAll('.opt')];
+  buttons.forEach(b=>b.disabled=true); buttons[q.a].classList.add('correct');
+  if(i===q.a){qScore++;fb.textContent='Helyes ✓'}else{btn.classList.add('wrong');fb.textContent='Nem ez a helyes válasz.'}
+  setTimeout(()=>{qIndex++;renderQ()},700);
+}
+function answerText(){
+  const q=quizOrder[qIndex], val=norm(textAns.value);
+  const ok=q.answers.some(a=>norm(a)===val);
+  if(ok){qScore++;fb.textContent='Helyes ✓'}else{fb.textContent='Jó válasz: '+q.answers[0]}
+  setTimeout(()=>{qIndex++;renderQ()},1200);
+}
+function resetProgress(){
+  if(confirm('Biztosan törlöd a helyi haladási adatokat?')){localStorage.removeItem('knownWords');localStorage.removeItem('bestQuiz');known={};best=0;updateStats()}
+}
 </script>
-</body>
-</html>
+</body></html>
