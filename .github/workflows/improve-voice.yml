@@ -1,0 +1,35 @@
+name: Improve German voice
+on:
+  push:
+    branches: [main]
+permissions:
+  contents: write
+jobs:
+  patch:
+    if: github.event.head_commit.message != 'Improve German voice selection'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Prefer natural German system voices
+        shell: python
+        run: |
+          from pathlib import Path
+          import re
+          p = Path('index.html')
+          s = p.read_text(encoding='utf-8')
+          pattern = r"function loadVoices\(\)\{if\(!\('speechSynthesis'in window\)\)return;voices=speechSynthesis\.getVoices\(\)\.filter\(v=>/\^de/i\.test\(v\.lang\)\);.*?\}\$\('voiceSelect'\)\.onchange=\(\)=>\{voice=voices\[Number\(\$\('voiceSelect'\)\.value\)\]\|\|null;if\(voice\)localStorage\.setItem\('germanVoiceName',voice\.name\)\};"
+          repl = r'''function voiceScore(v){const n=(v.name||'').toLowerCase();let s=0;if(/^de-DE$/i.test(v.lang))s+=40;else if(/^de/i.test(v.lang))s+=20;if(/anna/.test(n))s+=45;if(/petra|katja|conrad|vicki|markus|helena|martin/.test(n))s+=35;if(/google.*(deutsch|german)/.test(n))s+=38;if(/microsoft.*(katja|conrad|german)/.test(n))s+=38;if(/enhanced|premium|natural|neural/.test(n))s+=30;if(/compact|espeak|festival/.test(n))s-=60;if(v.localService)s+=3;return s}function loadVoices(){if(!('speechSynthesis'in window))return;voices=speechSynthesis.getVoices().filter(v=>/^de/i.test(v.lang)).sort((a,b)=>voiceScore(b)-voiceScore(a));$('voiceSelect').innerHTML=voices.length?voices.map((v,i)=>`<option value="${i}">${i===0?'⭐ ':''}${v.name} (${v.lang})</option>`).join(''):'<option>Nincs német hang</option>';let n=localStorage.getItem('germanVoiceNameV2'),i=n?voices.findIndex(v=>v.name===n):0;if(i<0)i=0;$('voiceSelect').value=i;voice=voices[i]||null}if('speechSynthesis'in window){loadVoices();speechSynthesis.onvoiceschanged=loadVoices}$('voiceSelect').onchange=()=>{voice=voices[Number($('voiceSelect').value)]||null;if(voice)localStorage.setItem('germanVoiceNameV2',voice.name)};'''
+          ns, count = re.subn(pattern, repl, s, flags=re.S)
+          if count != 1:
+              raise SystemExit(f'Expected one voice block, found {count}')
+          ns = ns.replace("localStorage.getItem('speechRate')||'.82'", "localStorage.getItem('speechRateV2')||'.90'")
+          ns = ns.replace("localStorage.setItem('speechRate',$('rateSelect').value)", "localStorage.setItem('speechRateV2',$('rateSelect').value)")
+          p.write_text(ns, encoding='utf-8')
+      - name: Commit patch
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html
+          git diff --cached --quiet && exit 0
+          git commit -m "Improve German voice selection"
+          git push
