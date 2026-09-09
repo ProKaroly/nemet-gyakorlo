@@ -1,0 +1,76 @@
+name: Add chapter selector and grammar guide
+on:
+  push:
+    branches: [main]
+permissions:
+  contents: write
+jobs:
+  patch:
+    if: github.event.head_commit.message != 'Add chapter selector and Hungarian grammar guide'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Patch chapter UI and grammar guide
+        shell: python
+        run: |
+          from pathlib import Path
+          import re
+          p=Path('index.html')
+          s=p.read_text(encoding='utf-8')
+
+          # Keep the existing localStorage key and all progress data untouched.
+          # Only UI/content logic changes below.
+
+          # Chapter selector styling.
+          if '.chapterBar{' not in s:
+              s=s.replace('.nav{margin:20px 0}', '.nav{margin:20px 0}.chapterBar{display:flex;justify-content:center;align-items:center;gap:10px;margin:18px 0 8px}.chapterBar label{font-weight:800;color:var(--text)}.chapterBar select{min-width:290px;text-align:center}.grammarGuide{margin:0 0 16px;padding:16px;border:1px solid var(--border);border-radius:14px;background:#f8f9fd}.grammarGuide h3{margin:0 0 8px;font-size:18px}.grammarGuide ul{margin:8px 0 0;padding-left:20px}.grammarGuide li{margin:7px 0;line-height:1.45}.grammarExample{display:inline-block;background:#eef1ff;border-radius:7px;padding:2px 6px;margin:2px 0}')
+
+          # Move selector to a centered, explicit chapter control.
+          s=s.replace('<div class="filters"><select id="weekFilter"></select><button onclick="resetAll()">Haladás törlése</button></div>', '<div class="filters"><button onclick="resetAll()">Haladás törlése</button></div>')
+          marker='<div class="grid grid4" style="margin:18px 0">'
+          if 'class="chapterBar"' not in s:
+              s=s.replace(marker, '<div class="chapterBar"><label for="weekFilter">Fejezet:</label><select id="weekFilter"></select></div>'+marker)
+
+          # Rename week labels in visible metadata to chapters where appropriate.
+          s=s.replace("${l.week}. hét – ${l.title}", "${l.week}. fejezet – ${l.title}")
+          s=s.replace("${wk(w)}. hét", "${wk(w)}. fejezet")
+          s=s.replace('Heti bontás','Fejezetenkénti bontás')
+
+          # Add Hungarian grammar explanation container to the grammar panel.
+          old='<div class="sectionTitle">Nyelvtan és mondatkiegészítés</div><div class="filters">'
+          new='<div class="sectionTitle">Nyelvtan és mondatkiegészítés</div><div id="grammarGuide" class="grammarGuide"></div><div class="filters">'
+          if 'id="grammarGuide"' not in s:
+              s=s.replace(old,new)
+
+          # Chapter metadata and Hungarian explanations. Chapter 1 is grounded in the uploaded lesson.
+          chapter_js=r'''const CHAPTER_INFO={1:{title:'Urlaub: Meer und mehr…',grammarTitle:'1. fejezet nyelvtana',grammarHtml:`<h3>Helyhatározó elöljárók – hová? (Wohin?)</h3><div>A leckében azt gyakoroljuk, hogy úti cél előtt mikor használjuk a <b>nach</b>, <b>an</b>, <b>in</b> és <b>auf</b> elöljárókat.</div><ul><li><b>nach</b>: városok és többnyire névelő nélküli országok előtt. <span class="grammarExample">nach Rom, nach Italien, nach Spanien</span></li><li><b>an</b>: vízparthoz, tengerhez, tóhoz. <span class="grammarExample">an die Adria, an den Gardasee</span>; <b>an das Meer → ans Meer</b>.</li><li><b>in</b>: hegyvidékre, többes számú vagy névelős földrajzi nevekhez. <span class="grammarExample">in die Alpen, in die USA</span>; <b>in das Gebirge → ins Gebirge</b>.</li><li><b>auf</b>: szigetre vagy vidékre. <span class="grammarExample">auf die Malediven, auf die Insel</span>; <b>auf das Land → aufs Land</b>.</li></ul><h3 style="margin-top:14px">Perfekt</h3><div>A lecke múlt időben utazási élményekről is beszéltet. Helyváltoztatásnál gyakori a <b>sein</b>: <span class="grammarExample">Ich bin nach Rom geflogen.</span> Más igéknél gyakori a <b>haben</b>: <span class="grammarExample">Ich habe ein Museum besucht.</span></div><h3 style="margin-top:14px">dass-mondatok</h3><div>A <b>dass</b> jelentése „hogy”. A ragozott ige a mellékmondat végére kerül: <span class="grammarExample">Ich glaube, dass Urlaub wichtig ist.</span></div>`}};'''
+          if 'const CHAPTER_INFO=' not in s:
+              s=s.replace("const D=window.GERMAN_DATA,$=id=>document.getElementById(id),KEY='germanPracticeV3';", "const D=window.GERMAN_DATA,$=id=>document.getElementById(id),KEY='germanPracticeV3';"+chapter_js)
+
+          # Render chapter-specific grammar explanation automatically from chapter metadata.
+          render_fn=r'''function renderGrammarGuide(){const id=cw()||1,info=CHAPTER_INFO[id];if(!$('grammarGuide'))return;if(info){$('grammarGuide').innerHTML=`<h2 style="margin:0 0 10px;font-size:19px">${info.grammarTitle}</h2>${info.grammarHtml}`}else{$('grammarGuide').innerHTML='<div class="note">Ehhez a fejezethez a nyelvtani magyarázat a tananyag feldolgozásakor kerül be.</div>'}}'''
+          if 'function renderGrammarGuide()' not in s:
+              insert_at=s.find('function initWeeks()')
+              s=s[:insert_at]+render_fn+s[insert_at:]
+
+          # Update selector labels and make selection persist without touching learning progress.
+          s=s.replace("$('weekFilter').innerHTML='<option value=\"0\">Összes hét</option>'+ls.map(l=>`<option value=\"${l.week}\">${l.week}. fejezet – ${l.title}</option>`).join('');", "$('weekFilter').innerHTML='<option value=\"0\">Összes fejezet</option>'+ls.map(l=>`<option value=\"${l.week}\">${l.week}. fejezet – ${l.title}</option>`).join('');const savedChapter=localStorage.getItem('selectedGermanChapter');if(savedChapter!==null&&[...$('weekFilter').options].some(o=>o.value===savedChapter))$('weekFilter').value=savedChapter;")
+          s=s.replace("$('weekFilter').onchange=()=>{cats();renderDictionary();renderWeak();dash();nextFlash();newListen();startGrammar('mixed')}", "$('weekFilter').onchange=()=>{localStorage.setItem('selectedGermanChapter',$('weekFilter').value);cats();renderDictionary();renderWeak();dash();nextFlash();newListen();renderGrammarGuide();startGrammar('mixed')}")
+
+          # Ensure guide renders at startup.
+          s=s.replace("initWeeks();cats();renderDictionary();dash();", "initWeeks();cats();renderDictionary();renderGrammarGuide();dash();")
+
+          # Add a permanent developer note for future chapter ingestion.
+          note='''\n<!-- FUTURE CHAPTER RULE: When adding a new lesson PDF, append a new chapter/lesson entry, tag vocabulary with that chapter number, infer grammar ONLY from the uploaded lesson, add a Hungarian grammar explanation to CHAPTER_INFO, and NEVER change KEY=\'germanPracticeV3\' or clear/migrate localStorage unless explicitly requested. -->\n'''
+          if 'FUTURE CHAPTER RULE' not in s:
+              s=s.replace('</body></html>',note+'</body></html>')
+
+          p.write_text(s,encoding='utf-8')
+      - name: Commit changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html
+          git diff --cached --quiet && exit 0
+          git commit -m "Add chapter selector and Hungarian grammar guide"
+          git push
