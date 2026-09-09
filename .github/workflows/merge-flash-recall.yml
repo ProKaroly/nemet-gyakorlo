@@ -1,67 +1,8 @@
-name: Merge flashcards and active recall
+name: Flash/recall migration (manual archive)
 on:
-  push:
-    branches: [main]
-permissions:
-  contents: write
+  workflow_dispatch:
 jobs:
-  patch:
-    if: github.event.head_commit.message != 'Merge flashcards with active recall'
+  archived:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - name: Patch learning flow
-        shell: python
-        run: |
-          from pathlib import Path
-          import re
-          p=Path('index.html')
-          s=p.read_text(encoding='utf-8')
-
-          # Remove separate Active recall tab and panel.
-          s=s.replace('<button data-tab="recall">Aktív felidézés</button>','')
-          s=re.sub(r'<section id="recall" class="panel">.*?</section>','',s,flags=re.S)
-
-          # Rename learned counters.
-          s=s.replace('<small>Biztos szó</small>','<small>Megtanult</small>')
-          s=s.replace('<small>Biztos szavak</small>','<small>Megtanult szavak</small>')
-
-          # Replace flashcard panel with input-based active recall.
-          flash=r'''<section id="flash" class="panel"><div class="filters"><select id="categoryFilter"></select><button onclick="nextFlash()">Másik szó</button><button onclick="speakCurrent()">🔊 Kiejtés</button><select id="voiceSelect"></select><select id="rateSelect"><option value=".72">Lassú</option><option value=".82">Normál</option><option value=".95">Gyorsabb</option></select></div><div class="card"><div class="sectionTitle">Szókártyák – aktív felidézéssel</div><div class="note">A magyar jelentés alapján írd be a teljes német szót vagy kifejezést. A helyesen felidézett szó megtanultnak számít, de később ritkábban újra előjön.</div><span class="tag" id="flashMeta"></span><div class="q" id="flashPrompt"></div><input id="flashInput" style="width:100%" placeholder="Írd be németül"><div class="actions"><button id="flashCheckBtn" class="primary" onclick="checkFlash()">Ellenőrzés</button></div><div id="flashFb" class="fb"></div></div></section>'''
-          s=re.sub(r'<section id="flash" class="panel">.*?</section>',flash,s,count=1,flags=re.S)
-
-          # Add correction-state variable.
-          s=s.replace('recallCorrection=false,Q=[]','recallCorrection=false,flashCorrection=false,Q=[]')
-          if 'flashCorrection=false,Q=[]' not in s:
-              s=s.replace('cur=0,L=null,R=null,','cur=0,L=null,R=null,flashCorrection=false,')
-
-          # Track learned state directly from correctness.
-          s=s.replace("if(g===0){p.r=0;p.i=0;p.l++;p.x++;p.d=now()+600000;S.s.x++}","if(g===0){p.learned=false;p.r=0;p.i=0;p.l++;p.x++;p.d=now()+120000;S.s.x++}")
-          s=s.replace("else{p.c++;S.s.c++;", "else{p.learned=true;p.c++;S.s.c++;")
-          s=re.sub(r'const due=w=>P\(w\)\.d<=now\(\),master=w=>P\(w\)\.r>=3&&P\(w\)\.i>=7,weak=',"const due=w=>P(w).d<=now(),master=w=>!!P(w).learned,weak=",s)
-
-          # No separate recall initialization/navigation anymore.
-          s=s.replace(";if(b.dataset.tab==='recall')newRecall()",'')
-          s=s.replace(';newRecall();startGrammar', ';startGrammar')
-          s=s.replace('nextFlash();newListen();newRecall();startGrammar', 'nextFlash();newListen();startGrammar')
-
-          # Replace the old flash logic with weighted active recall.
-          start=s.find('function pool(){')
-          end=s.find('function pick(){',start)
-          if start<0 or end<0:
-              raise SystemExit('Could not locate flash logic')
-          newlogic=r'''function pool(){let a=words(),c=$('categoryFilter').value||'Mind';a=a.filter(w=>c==='Mind'||w.cat===c);let weighted=[];a.forEach(w=>{let p=P(w),n=p.learned?1:(weak(w)?7:4);if(due(w))n+=p.learned?1:3;for(let i=0;i<n;i++)weighted.push(w)});return weighted.length?weighted:a}function nextFlash(){flashCorrection=false;let a=pool();if(!a.length)return;let prev=cur,w=a[Math.floor(Math.random()*a.length)];if(a.length>1&&D.vocab.indexOf(w)===prev){w=a[Math.floor(Math.random()*a.length)]}cur=D.vocab.indexOf(w);showFlash()}function showFlash(){let w=D.vocab[cur]||D.vocab[0],p=P(w);$('flashMeta').textContent=`${w.cat} • ${wk(w)}. hét • ${p.learned?'megtanult – ritkább ismétlés':'tanulás alatt – gyakoribb ismétlés'}`;$('flashPrompt').textContent=w.hu;$('flashInput').value='';$('flashInput').placeholder='Írd be németül';$('flashCheckBtn').textContent='Ellenőrzés';$('flashFb').innerHTML='';$('flashInput').focus()}function checkFlash(){let w=D.vocab[cur]||D.vocab[0],inp=$('flashInput'),z=ok(inp.value,[w.de]);if(flashCorrection){if(z){$('flashFb').innerHTML='<span class="ok">Rendben ✓ Most már továbbmehetünk.</span>';flashCorrection=false;setTimeout(nextFlash,550)}else{$('flashFb').innerHTML=`<span class="bad">Még nem pontos.</span> Írd le pontosan ezt: <b>${w.de}</b> <button class="speak" onclick="speakCurrent()">🔊</button>`;inp.focus();inp.select()}return}if(z){$('flashFb').innerHTML='<span class="ok">Helyes ✓ Átkerült a megtanult szavak közé.</span>';grade(w,2);speak(w.de);setTimeout(nextFlash,650)}else{grade(w,0);flashCorrection=true;$('flashFb').innerHTML=`<span class="bad">Nem sikerült.</span> A helyes válasz: <b>${w.de}</b> <button class="speak" onclick="speakCurrent()">🔊</button><br><span class="note">A továbblépéshez írd le egyszer pontosan.</span>`;inp.value='';inp.placeholder=`Írd le pontosan: ${w.de}`;$('flashCheckBtn').textContent='Helyesen leírtam – tovább';inp.focus()}}function speakCurrent(){speak((D.vocab[cur]||D.vocab[0]).de)}'''
-          s=s[:start]+newlogic+s[end:]
-
-          # Enter checks the current flashcard answer.
-          s=s.replace("initWeeks();cats();renderDictionary();dash();nextFlash();newListen();startGrammar('mixed');", "initWeeks();cats();renderDictionary();dash();nextFlash();newListen();startGrammar('mixed');$('flashInput').addEventListener('keydown',e=>{if(e.key==='Enter')checkFlash()});")
-
-          p.write_text(s,encoding='utf-8')
-      - name: Commit changes
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add index.html
-          git diff --cached --quiet && exit 0
-          git commit -m "Merge flashcards with active recall"
-          git push
+      - run: echo "Archived one-time migration; no automatic changes."
