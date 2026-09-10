@@ -1,0 +1,144 @@
+name: Import chapter 2
+on:
+  push:
+    branches: [main]
+permissions:
+  contents: write
+jobs:
+  import:
+    if: github.event.head_commit.message == 'Install chapter 2 importer'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Add chapter 2 data and grammar
+        shell: python
+        run: |
+          from pathlib import Path
+          import json, re
+
+          data_path=Path('data.js')
+          raw=data_path.read_text(encoding='utf-8')
+          data=json.loads(raw.split('=',1)[1].strip().rstrip(';'))
+
+          # Keep all existing words and progress-compatible identifiers untouched.
+          lessons=data.get('lessons') or [{'week':1,'title':'Urlaub: Meer und mehr…','level':'B1'}]
+          if not any(int(x.get('week',0))==2 for x in lessons):
+              lessons.append({'week':2,'title':'Konjugation und Modalverben','level':'B1'})
+          data['lessons']=lessons
+
+          vocab=[
+            ('kommen','jönni','Igeragozás','Ich komme aus Deutschland.','Németországból jövök.'),
+            ('machen','csinálni','Igeragozás','Wir machen heute die Hausaufgaben.','Ma megcsináljuk a házi feladatot.'),
+            ('kaufen','vásárolni','Igeragozás','Petra kauft viele Sachen.','Petra sok dolgot vásárol.'),
+            ('fliegen','repülni','Igeragozás','Nora fliegt nach London.','Nora Londonba repül.'),
+            ('wohnen','lakni','Igeragozás','Ich wohne in Berlin.','Berlinben lakom.'),
+            ('schreiben','írni','Igeragozás','Ich schreibe einen Brief.','Írok egy levelet.'),
+            ('gehen','menni','Igeragozás','Wir gehen heute in die Stadt.','Ma bemegyünk a városba.'),
+            ('heißen','valahogy hívnak','Bemutatkozás','Wie heißt du?','Hogy hívnak?'),
+            ('haben','birtokolni, van neki','Igeragozás','Sie hat drei Geschwister.','Három testvére van.'),
+            ('sein','lenni','Igeragozás','Er ist nicht verheiratet.','Ő nem házas.'),
+            ('wünschen','kívánni','Igeragozás','Sie wünscht sich viele Geschenke.','Sok ajándékot kíván magának.'),
+            ('brauchen','szüksége van valamire','Igeragozás','Für die Reise brauchen wir viel Geld.','Az utazáshoz sok pénzre van szükségünk.'),
+            ('lernen','tanulni','Igeragozás','Peter und Petra lernen Spanisch.','Peter és Petra spanyolul tanulnak.'),
+            ('spielen','játszani','Igeragozás','Er spielt gern Fußball.','Szeret focizni.'),
+            ('suchen','keresni','Igeragozás','Torsten sucht immer den Schlüssel.','Torsten mindig a kulcsot keresi.'),
+            ('verstehen','érteni','Igeragozás','Mein Nachbar versteht mich nicht.','A szomszédom nem ért engem.'),
+            ('trinken','inni','Igeragozás','Mein Mann trinkt keinen Alkohol.','A férjem nem iszik alkoholt.'),
+            ('sehen','látni','Erős igék','Ich sehe einen Kater.','Látok egy kandúrt.'),
+            ('lesen','olvasni','Erős igék','Petra liest ein Buch.','Petra könyvet olvas.'),
+            ('essen','enni','Erős igék','Das Kind isst Brot mit Butter.','A gyerek vajas kenyeret eszik.'),
+            ('nehmen','venni, elvenni','Erős igék','Martina nimmt einen Apfel.','Martina elvesz egy almát.'),
+            ('geben','adni','Erős igék','Petra gibt Peter eine Tasse Kaffee.','Petra ad Peternek egy csésze kávét.'),
+            ('helfen','segíteni','Erős igék','Hans hilft Ute.','Hans segít Uténak.'),
+            ('sprechen','beszélni','Erős igék','Sprichst du Deutsch?','Beszélsz németül?'),
+            ('treffen','találkozni','Erős igék','Ich treffe heute Eduard.','Ma találkozom Eduarddal.'),
+            ('laufen','futni','Erős igék','Er läuft schnell.','Gyorsan fut.'),
+            ('fahren','utazni, vezetni','Erős igék','Du fährst nach Berlin.','Berlinbe utazol.'),
+            ('heiraten','megházasodni','Igeragozás','Gregor und Marlis heiraten heute.','Gregor és Marlis ma összeházasodnak.'),
+            ('werden','válni, lesz','Erős igék','Ich werde heute 20 Jahre alt.','Ma leszek 20 éves.'),
+            ('empfehlen','ajánlani','Erős igék','Ich empfehle Petra ein Restaurant.','Ajánlok Petrának egy éttermet.'),
+            ('befehlen','parancsolni','Erős igék','Der Chef befiehlt dem Mitarbeiter.','A főnök parancsol a munkatársnak.'),
+            ('stehlen','lopni','Erős igék','Das Kind stiehlt die Zeitung.','A gyerek ellopja az újságot.'),
+            ('wollen','akarni','Modalverben','Ich will Fußball spielen.','Focizni akarok.'),
+            ('sollen','kellene, feladata valami','Modalverben','Du sollst Einkäufe machen.','Bevásárolnod kellene.'),
+            ('müssen','kell, muszáj','Modalverben','Ich muss morgen in die Schule gehen.','Holnap iskolába kell mennem.'),
+            ('können','tudni, képesnek lenni','Modalverben','Er kann gut Handball spielen.','Jól tud kézilabdázni.'),
+            ('dürfen','szabad, engedélyezett','Modalverben','Hier darf man nicht parken.','Itt nem szabad parkolni.'),
+            ('mögen','kedvelni','Modalverben','Ich mag Bier nicht.','Nem szeretem a sört.'),
+            ('möchten','szeretne','Modalverben','Möchten Sie Kaffee oder Tee?','Kávét vagy teát szeretne?'),
+            ('mitkommen','vele jönni','Modalverben','Wollt ihr mitkommen?','Akartok velünk jönni?'),
+            ('aufräumen','rendet rakni','Mindennapi igék','Wir sollen das Zimmer aufräumen.','Rendet kell raknunk a szobában.'),
+            ('die Hausaufgaben','házi feladat','Mindennapi élet','Ich muss meine Hausaufgaben machen.','Meg kell csinálnom a házi feladatomat.'),
+            ('der Führerschein','jogosítvány','Mindennapi élet','Ihr habt keinen Führerschein.','Nincs jogosítványotok.'),
+            ('verheiratet','házas','Bemutatkozás','Otto ist verheiratet.','Otto házas.'),
+            ('die Geschwister','testvérek','Család','Sie hat drei Geschwister.','Három testvére van.'),
+            ('der Bruder','fiútestvér','Család','Mohammed hat zwei Brüder.','Mohammednek két fiútestvére van.'),
+            ('die Schwester','lánytestvér','Család','Denis hat eine kleine Schwester.','Denisnek van egy kishúga.'),
+            ('die Eltern','szülők','Család','Meine Eltern heißen Justin und Stefanie.','A szüleimet Justinnak és Stefanie-nek hívják.'),
+            ('der Sohn','fiúgyermek','Család','Chang hat einen Sohn.','Changnak van egy fia.'),
+            ('die Universität','egyetem','Tanulás és munka','Er ist Student an der Universität.','Egyetemista.'),
+            ('das Gymnasium','gimnázium','Tanulás és munka','Das ist sein letztes Jahr im Gymnasium.','Ez az utolsó éve a gimnáziumban.'),
+            ('der Polizist','rendőr','Tanulás és munka','Otto arbeitet als Polizist.','Otto rendőrként dolgozik.'),
+            ('der Ingenieur','mérnök','Tanulás és munka','Adam ist Ingenieur.','Adam mérnök.'),
+            ('der Informatiker','informatikus','Tanulás és munka','Chang arbeitet als Informatiker.','Chang informatikusként dolgozik.'),
+            ('die Mathelehrerin','matematikatanárnő','Tanulás és munka','Sophie ist Mathelehrerin.','Sophie matematikatanárnő.'),
+            ('pünktlich','pontos, időben érkező','Hasznos szavak','Ihr sollt immer pünktlich sein.','Mindig pontosnak kell lennetek.'),
+            ('nach Hause','haza','Hasznos kifejezések','Wir wollen nach Hause gehen.','Haza akarunk menni.'),
+            ('zur Post','a postára','Hasznos kifejezések','Frau Schulz soll zur Post gehen.','Schulz asszonynak a postára kell mennie.'),
+            ('ins Kino','moziba','Hasznos kifejezések','Darf ich ins Kino gehen?','Elmehetek moziba?'),
+            ('Woher?','Honnan?','Kérdőszavak','Woher kommst du?','Honnan jössz?'),
+            ('Wohin?','Hová?','Kérdőszavak','Wohin fährst du?','Hová utazol?'),
+            ('Wo?','Hol?','Kérdőszavak','Wo wohnst du?','Hol laksz?')
+          ]
+          # Duplicate spellings are allowed across chapters so the same learned state can be reused.
+          if not any(int(x.get('week',1))==2 for x in data.get('vocab',[])):
+              for de,hu,cat,ex,exhu in vocab:
+                  data['vocab'].append({'de':de,'hu':hu,'cat':cat,'example':ex,'example_hu':exhu,'week':2})
+
+          grammar=data.get('grammar',[])
+          if not any(int(x.get('week',1))==2 for x in grammar):
+              grammar += [
+                {'week':2,'type':'choice','q':'Du ___ aus Kairo. (kommen)','opts':['komme','kommst','kommt','kommen'],'a':1,'explain':'A szabályos jelen idejű ragozásban a du személyragja általában -st: du kommst.'},
+                {'week':2,'type':'choice','q':'Er ___ in Berlin. (wohnen)','opts':['wohne','wohnst','wohnt','wohnen'],'a':2,'explain':'Er/sie/es esetén a szabályos ige végződése -t: er wohnt.'},
+                {'week':2,'type':'choice','q':'Wir ___ Deutsch. (lernen)','opts':['lerne','lernst','lernt','lernen'],'a':3,'explain':'Wir és sie/Sie alakban az ige rendszerint az infinitívusszal azonos: wir lernen.'},
+                {'week':2,'type':'choice','q':'Du ___ nach Berlin. (fahren)','opts':['fahre','fährst','fahrt','fahren'],'a':1,'explain':'A fahren erős ige: du és er/sie/es alakban a → ä: du fährst.'},
+                {'week':2,'type':'choice','q':'Petra ___ ein Buch. (lesen)','opts':['lese','liest','lest','lesen'],'a':1,'explain':'A lesen erős ige: du/er/sie/es alakban e → ie: Petra liest.'},
+                {'week':2,'type':'choice','q':'Das Kind ___ Brot. (essen)','opts':['esse','isst','esst','essen'],'a':1,'explain':'Az essen erős ige: du/er/sie/es alakban e → i: das Kind isst.'},
+                {'week':2,'type':'choice','q':'Ich ___ heute Fußball spielen. (wollen)','opts':['will','willst','wollen','wollt'],'a':0,'explain':'A wollen modalige egyes szám első személyben: ich will.'},
+                {'week':2,'type':'choice','q':'Du ___ die Hausaufgaben machen. (müssen)','opts':['muss','musst','müsst','müssen'],'a':1,'explain':'A müssen alakja du személyben: du musst. Az umlaut egyes számban eltűnik.'},
+                {'week':2,'type':'choice','q':'Er ___ sehr gut schwimmen. (können)','opts':['kann','kannst','könnt','können'],'a':0,'explain':'A können er/sie/es alakja: kann.'},
+                {'week':2,'type':'choice','q':'Hier ___ man nicht parken. (dürfen)','opts':['darf','darfst','dürft','dürfen'],'a':0,'explain':'A dürfen er/sie/es, illetve man mellett: darf.'},
+                {'week':2,'type':'choice','q':'Wir ___ nach Hause gehen. (wollen)','opts':['will','wollt','wollen','willst'],'a':2,'explain':'Wir mellett: wollen. A modalige ragozott, a másik ige infinitívben a mondat végére kerül.'},
+                {'week':2,'type':'choice','q':'___ wohnst du? – In Berlin.','opts':['Wo','Wohin','Woher','Wie'],'a':0,'explain':'Wo? = hol? Hely megadására használjuk.'},
+                {'week':2,'type':'choice','q':'___ fährst du? – Nach Kassel.','opts':['Wo','Wohin','Woher','Wer'],'a':1,'explain':'Wohin? = hová? Irány, úti cél kérdezésére.'},
+                {'week':2,'type':'choice','q':'___ kommst du? – Aus Deutschland.','opts':['Wo','Wohin','Woher','Wie'],'a':2,'explain':'Woher? = honnan? Eredet vagy kiindulási hely kérdezésére.'},
+                {'week':2,'type':'choice','q':'Melyik mondat szórendje helyes?','opts':['Ich muss machen meine Hausaufgaben.','Ich meine Hausaufgaben muss machen.','Ich muss meine Hausaufgaben machen.'],'a':2,'explain':'Modaligés mondatban a ragozott modalige a 2. helyen áll, a főige infinitív alakja a mondat végén: Ich muss ... machen.'}
+              ]
+          data['grammar']=grammar
+          data_path.write_text('window.GERMAN_DATA = '+json.dumps(data,ensure_ascii=False,indent=2)+';\n',encoding='utf-8')
+
+          # Patch UI without changing KEY=germanPracticeV3, therefore existing progress survives.
+          p=Path('index.html')
+          s=p.read_text(encoding='utf-8')
+          if "2:{title:'Konjugation und Modalverben'" not in s:
+              chapter2=""",2:{title:'Konjugation und Modalverben',grammarTitle:'2. fejezet nyelvtana',grammarHtml:`<h3>Jelen idő – Präsens</h3><div>A fejezet központi témája a német igék jelen idejű ragozása. Szabályos igéknél az ige tövéhez személyrag kerül: <span class=\"grammarExample\">ich mache, du machst, er macht, wir machen, ihr macht, sie machen</span>.</div><h3 style=\"margin-top:14px\">Erős igék és magánhangzó-váltás</h3><div>Néhány erős igénél csak a <b>du</b> és <b>er/sie/es</b> alakban változik a tőhangzó. A tananyag példái: <span class=\"grammarExample\">fahren → du fährst</span>, <span class=\"grammarExample\">laufen → du läufst</span>, <span class=\"grammarExample\">treffen → du triffst</span>, <span class=\"grammarExample\">lesen → du liest</span>, <span class=\"grammarExample\">essen → du isst</span>. A wir, ihr és sie/Sie alakokban nincs ilyen tőhangzó-váltás.</div><h3 style=\"margin-top:14px\">Modalverben</h3><div>A leckében a <b>wollen, sollen, müssen, können, dürfen, mögen</b> és <b>möchten</b> igéket gyakoroljátok. A modalige ragozott alakban a mondat második helyén áll, a másik ige pedig infinitívben a mondat végére kerül: <span class=\"grammarExample\">Ich muss meine Hausaufgaben machen.</span> <span class=\"grammarExample\">Wir wollen nach Hause gehen.</span></div><h3 style=\"margin-top:14px\">Wo? – Wohin? – Woher?</h3><ul><li><b>Wo?</b> = hol? <span class=\"grammarExample\">Wo wohnst du? – In Berlin.</span></li><li><b>Wohin?</b> = hová? <span class=\"grammarExample\">Wohin fährst du? – Nach Kassel.</span></li><li><b>Woher?</b> = honnan? <span class=\"grammarExample\">Woher kommst du? – Aus Deutschland.</span></li></ul>`}"""
+              s=s.replace('`}};const G=[','`'+chapter2+'};const G=[',1)
+
+          # Make grammar exercises chapter-aware and sourced from data.js where available.
+          if 'function chapterGrammarQs()' not in s:
+              old="function startGrammar(m='mixed'){let a=[];if(m!=='sentence')a.push(...G.map(x=>({type:'choice',q:x.q,o:x.o,a:x.a,e:x.e})));if(m!=='grammar')a.push(...sentenceQs());Q=shuffle(a).slice(0,Math.min(15,a.length));qi=0;qs=0;renderGrammar()}"
+              new="function chapterGrammarQs(){let ch=cw()||1;if(D.grammar&&D.grammar.length){let a=D.grammar.filter(x=>Number(x.week||1)===ch).map(x=>x.type==='choice'?{type:'choice',q:x.q,o:x.opts||x.o,a:x.a,e:x.explain||x.e}:{type:'text',q:x.q,A:x.answers||x.A,e:x.explain||x.e});if(a.length)return a}return ch===1?G.map(x=>({type:'choice',q:x.q,o:x.o,a:x.a,e:x.e})):[]}function startGrammar(m='mixed'){let a=[];if(m!=='sentence')a.push(...chapterGrammarQs());if(m!=='grammar')a.push(...sentenceQs());Q=shuffle(a).slice(0,Math.min(15,a.length));qi=0;qs=0;renderGrammar()}"
+              if old in s:s=s.replace(old,new)
+
+          # Daily grammar should also respect selected chapter.
+          s=s.replace("gr=shuffle([...G.map(q=>({k:'g',q:{type:'choice',q:q.q,o:q.o,a:q.a,e:q.e}})),...sentenceQs().map(q=>({k:'g',q}))]).slice(0,5)","gr=shuffle([...chapterGrammarQs().map(q=>({k:'g',q})),...sentenceQs().map(q=>({k:'g',q}))]).slice(0,5)")
+
+          p.write_text(s,encoding='utf-8')
+      - name: Commit chapter 2
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data.js index.html
+          git diff --cached --quiet && exit 0
+          git commit -m "Add chapter 2 material"
+          git push
