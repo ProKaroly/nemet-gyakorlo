@@ -1,0 +1,42 @@
+name: Fix UI clicks
+on:
+  push:
+    branches: [main]
+permissions:
+  contents: write
+jobs:
+  fix:
+    if: github.event.head_commit.message == 'Install UI click repair'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Repair JavaScript initialization and chapter 2 grammar
+        shell: python
+        run: |
+          from pathlib import Path
+          import re
+          p=Path('index.html')
+          s=p.read_text(encoding='utf-8')
+
+          # The active-recall merge removed the autoSpeak checkbox, but initialization still
+          # accessed it unconditionally. That throws on page load and prevents all clicks.
+          s=s.replace("$('autoSpeak').checked=localStorage.getItem('autoSpeak')==='1';$('autoSpeak').onchange=()=>localStorage.setItem('autoSpeak',$('autoSpeak').checked?'1':'0');", "if($('autoSpeak')){$('autoSpeak').checked=localStorage.getItem('autoSpeak')==='1';$('autoSpeak').onchange=()=>localStorage.setItem('autoSpeak',$('autoSpeak').checked?'1':'0');}")
+
+          # Chapter 2 was accidentally nested inside chapter 1 metadata. Rebuild the object cleanly.
+          start=s.find('const CHAPTER_INFO=')
+          end=s.find(';const G=[', start)
+          if start>=0 and end>=0:
+              chapter_info=r'''const CHAPTER_INFO={1:{title:'Urlaub: Meer und mehr…',grammarTitle:'1. fejezet nyelvtana',grammarHtml:`<h3>Helyhatározó elöljárók – hová? (Wohin?)</h3><div>A leckében azt gyakoroljuk, hogy úti cél előtt mikor használjuk a <b>nach</b>, <b>an</b>, <b>in</b> és <b>auf</b> elöljárókat.</div><ul><li><b>nach</b>: városok és többnyire névelő nélküli országok előtt. <span class="grammarExample">nach Rom, nach Italien, nach Spanien</span></li><li><b>an</b>: vízparthoz, tengerhez, tóhoz. <span class="grammarExample">an die Adria, an den Gardasee</span>; <b>an das Meer → ans Meer</b>.</li><li><b>in</b>: hegyvidékre, többes számú vagy névelős földrajzi nevekhez. <span class="grammarExample">in die Alpen, in die USA</span>; <b>in das Gebirge → ins Gebirge</b>.</li><li><b>auf</b>: szigetre vagy vidékre. <span class="grammarExample">auf die Malediven, auf die Insel</span>; <b>auf das Land → aufs Land</b>.</li></ul><h3 style="margin-top:14px">Perfekt</h3><div>Helyváltoztatásnál gyakori a <b>sein</b>: <span class="grammarExample">Ich bin nach Rom geflogen.</span> Más igéknél gyakori a <b>haben</b>: <span class="grammarExample">Ich habe ein Museum besucht.</span></div><h3 style="margin-top:14px">dass-mondatok</h3><div>A <b>dass</b> jelentése „hogy”. A ragozott ige a mellékmondat végére kerül: <span class="grammarExample">Ich glaube, dass Urlaub wichtig ist.</span></div>`},2:{title:'Konjugation und Modalverben',grammarTitle:'2. fejezet nyelvtana',grammarHtml:`<h3>Jelen idő – Präsens</h3><div>A fejezet központi témája a német igék jelen idejű ragozása. Szabályos igéknél az ige tövéhez személyrag kerül: <span class="grammarExample">ich mache, du machst, er macht, wir machen, ihr macht, sie machen</span>.</div><h3 style="margin-top:14px">Erős igék és magánhangzó-váltás</h3><div>Néhány erős igénél főleg a <b>du</b> és <b>er/sie/es</b> alakban változik a tőhangzó: <span class="grammarExample">fahren → du fährst</span>, <span class="grammarExample">laufen → du läufst</span>, <span class="grammarExample">treffen → du triffst</span>, <span class="grammarExample">lesen → du liest</span>, <span class="grammarExample">essen → du isst</span>.</div><h3 style="margin-top:14px">Modalverben</h3><div>A leckében a <b>wollen, sollen, müssen, können, dürfen, mögen</b> és <b>möchten</b> igéket gyakoroljátok. A modalige ragozott alakban a mondat második helyén áll, a főige infinitívben a mondat végén: <span class="grammarExample">Ich muss meine Hausaufgaben machen.</span></div><h3 style="margin-top:14px">Wo? – Wohin? – Woher?</h3><ul><li><b>Wo?</b> = hol? <span class="grammarExample">Wo wohnst du? – In Berlin.</span></li><li><b>Wohin?</b> = hová? <span class="grammarExample">Wohin fährst du? – Nach Kassel.</span></li><li><b>Woher?</b> = honnan? <span class="grammarExample">Woher kommst du? – Aus Deutschland.</span></li></ul>`}}'''
+              s=s[:start]+chapter_info+s[end:]
+
+          # Preserve the existing localStorage key and all progress.
+          assert "KEY='germanPracticeV3'" in s
+          p.write_text(s,encoding='utf-8')
+      - name: Commit repair
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html
+          git diff --cached --quiet && exit 0
+          git commit -m "Fix page clicks and chapter 2 grammar"
+          git push
