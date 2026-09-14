@@ -1,0 +1,126 @@
+name: Import chapter 3
+on:
+  push:
+    branches: [main]
+permissions:
+  contents: write
+jobs:
+  import:
+    if: github.event.head_commit.message == 'Install chapter 3 importer'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Add chapter 3 material
+        shell: python
+        run: |
+          from pathlib import Path
+          import json, re
+
+          data_path=Path('data.js')
+          raw=data_path.read_text(encoding='utf-8')
+          data=json.loads(raw.split('=',1)[1].strip().rstrip(';'))
+
+          lessons=data.get('lessons') or []
+          if not any(int(x.get('week',0))==3 for x in lessons):
+              lessons.append({'week':3,'title':'Modalverben – können, müssen und Überblick','level':'B1'})
+          data['lessons']=lessons
+
+          vocab=[
+            ('können','tudni, képesnek lenni','Modalverben','Anna kann schwimmen.','Anna tud úszni.'),
+            ('müssen','kell, muszáj','Modalverben','Peter ist krank. Er muss im Bett bleiben.','Peter beteg. Ágyban kell maradnia.'),
+            ('dürfen','szabad, engedélyezett','Modalverben','Hier darf man nicht rauchen.','Itt nem szabad dohányozni.'),
+            ('wollen','akarni','Modalverben','Sie wollen verreisen.','El akarnak utazni.'),
+            ('sollen','kellene, felszólítás / elvárás','Modalverben','Franz, du sollst der Oma helfen.','Franz, segítened kellene a nagymamának.'),
+            ('mögen','kedvelni, szeretni','Modalverben','Hans mag Grete.','Hans kedveli Gretét.'),
+            ('möchten','szeretne','Modalverben','Laya möchte eine Pizza.','Laya szeretne egy pizzát.'),
+            ('die Fähigkeit','képesség','Modalverben jelentése','Können drückt eine Fähigkeit aus.','A können képességet fejez ki.'),
+            ('die Möglichkeit','lehetőség','Modalverben jelentése','Können kann auch eine Möglichkeit ausdrücken.','A können lehetőséget is kifejezhet.'),
+            ('die Absicht','szándék','Modalverben jelentése','Wollen drückt eine Absicht aus.','A wollen szándékot fejez ki.'),
+            ('die Erlaubnis','engedély','Modalverben jelentése','Dürfen drückt eine Erlaubnis aus.','A dürfen engedélyt fejez ki.'),
+            ('das Verbot','tiltás','Modalverben jelentése','Hier gilt ein Verbot.','Itt tiltás van érvényben.'),
+            ('die Pflicht','kötelesség','Modalverben jelentése','Müssen drückt eine Pflicht aus.','A müssen kötelességet fejez ki.'),
+            ('die Notwendigkeit','szükségesség','Modalverben jelentése','Müssen kann eine Notwendigkeit ausdrücken.','A müssen szükségességet is kifejezhet.'),
+            ('die Aufforderung','felszólítás','Modalverben jelentése','Sollen kann eine Aufforderung ausdrücken.','A sollen felszólítást fejezhet ki.'),
+            ('der Wunsch','kívánság','Modalverben jelentése','Möchten drückt einen Wunsch aus.','A möchten kívánságot fejez ki.'),
+            ('die Zuneigung','vonzalom, kedvelés','Modalverben jelentése','Mögen kann Zuneigung ausdrücken.','A mögen kedvelést fejezhet ki.'),
+            ('schwimmen','úszni','Képességek','Ich kann schwimmen.','Tudok úszni.'),
+            ('Fußball spielen','focizni','Képességek','Paul kann Fußball spielen.','Paul tud focizni.'),
+            ('tanzen','táncolni','Képességek','Anna kann tanzen.','Anna tud táncolni.'),
+            ('werfen','dobni','Képességek','Er kann den Ball werfen.','El tudja dobni a labdát.'),
+            ('Eis laufen','korcsolyázni','Képességek','Sie kann Eis laufen.','Tud korcsolyázni.'),
+            ('Moped fahren','mopedet vezetni','Képességek','Martin kann Moped fahren.','Martin tud mopedet vezetni.'),
+            ('Rad fahren','kerékpározni','Képességek','Paul kann Rad fahren.','Paul tud biciklizni.'),
+            ('laufen','futni','Képességek','Er kann schnell laufen.','Gyorsan tud futni.'),
+            ('Schi fahren','síelni','Képességek','Sie kann Schi fahren.','Tud síelni.'),
+            ('malen','rajzolni, festeni','Képességek','Anna kann gut malen.','Anna jól tud rajzolni.'),
+            ('springen','ugrani','Képességek','Er kann hoch springen.','Magasra tud ugrani.'),
+            ('fangen','elkapni','Képességek','Er kann den Ball fangen.','El tudja kapni a labdát.'),
+            ('tauchen','búvárkodni','Képességek','Sie kann tauchen.','Tud búvárkodni.'),
+            ('klettern','mászni','Képességek','Martin kann klettern.','Martin tud mászni.'),
+            ('Auto fahren','autót vezetni','Képességek','Er kann Auto fahren.','Tud autót vezetni.'),
+            ('am Computer arbeiten','számítógépen dolgozni','Képességek','Nina kann am Computer arbeiten.','Nina tud számítógépen dolgozni.'),
+            ('singen','énekelni','Képességek','Sie kann singen.','Tud énekelni.'),
+            ('Skateboard fahren','gördeszkázni','Képességek','Er kann Skateboard fahren.','Tud gördeszkázni.'),
+            ('Gitarre spielen','gitározni','Képességek','Er kann Gitarre spielen.','Tud gitározni.'),
+            ('kochen','főzni','Mindennapi tevékenységek','Du kannst gut kochen.','Jól tudsz főzni.'),
+            ('im Bett bleiben','ágyban maradni','Kötelezettség','Ich bin krank, ich muss im Bett bleiben.','Beteg vagyok, ágyban kell maradnom.'),
+            ('schwer arbeiten','keményen dolgozni','Kötelezettség','Ihr müsst schwer arbeiten.','Keményen kell dolgoznotok.'),
+            ('in die Schule gehen','iskolába menni','Kötelezettség','Wir müssen in die Schule gehen.','Iskolába kell mennünk.'),
+            ('putzen','takarítani','Kötelezettség','Ich muss die Wohnung putzen.','Ki kell takarítanom a lakást.'),
+            ('rennen','rohanni, futni','Mindennapi tevékenységek','Der Briefträger muss rennen.','A postásnak rohannia kell.'),
+            ('telefonieren','telefonálni','Mindennapi tevékenységek','Du musst telefonieren.','Telefonálnod kell.'),
+            ('die Wäsche waschen','ruhát mosni','Mindennapi tevékenységek','Wir müssen die Wäsche waschen.','Ki kell mosnunk a ruhákat.'),
+            ('früh aufwachen','korán felébredni','Mindennapi tevékenységek','Mein Bruder muss früh aufwachen.','A testvéremnek korán kell felébrednie.'),
+            ('Englisch sprechen','angolul beszélni','Képességek','Ihr könnt Englisch sprechen.','Tudtok angolul beszélni.'),
+            ('aufräumen','rendet rakni','Kötelezettség','Peter, du sollst dein Zimmer aufräumen.','Peter, rendet kellene raknod a szobádban.'),
+            ('rauchen','dohányozni','Tiltás és engedély','Darf ich hier rauchen?','Szabad itt dohányoznom?'),
+            ('parken','parkolni','Tiltás és engedély','Hier darf man nicht parken.','Itt nem szabad parkolni.'),
+            ('lügen','hazudni','Tiltás és engedély','Du darfst nicht lügen.','Nem szabad hazudnod.'),
+            ('aufbleiben','fennmaradni','Tiltás és engedély','Wir dürfen lange aufbleiben.','Sokáig fennmaradhatunk.'),
+            ('eine Pause halten','szünetet tartani','Mindennapi tevékenységek','Wir möchten eine Pause halten.','Szeretnénk szünetet tartani.'),
+            ('abnehmen','lefogyni','Kötelezettség','Christine soll abnehmen.','Christine-nek le kellene fogynia.'),
+            ('zu einer Party einladen','meghívni egy buliba','Szándék','Yussef will seine Freunde zu einer Party einladen.','Yussef meg akarja hívni a barátait egy buliba.'),
+            ('berühren','megérinteni','Tiltás és engedély','Die Kinder dürfen die Bilder nicht berühren.','A gyerekeknek nem szabad megérinteniük a képeket.')
+          ]
+          if not any(int(x.get('week',1))==3 for x in data.get('vocab',[])):
+              for de,hu,cat,ex,exhu in vocab:
+                  data['vocab'].append({'de':de,'hu':hu,'cat':cat,'example':ex,'example_hu':exhu,'week':3})
+
+          grammar=data.get('grammar',[])
+          if not any(int(x.get('week',1))==3 for x in grammar):
+              grammar += [
+                {'week':3,'type':'choice','q':'Du ___ gut kochen. (können)','opts':['kann','kannst','könnt','können'],'a':1,'explain':'A können du alakja: kannst.'},
+                {'week':3,'type':'choice','q':'Mein Vater ___ Auto fahren. (können)','opts':['kann','kannst','können','könnt'],'a':0,'explain':'Er/sie/es alakban: kann.'},
+                {'week':3,'type':'choice','q':'Ich ___ die Wohnung putzen. (müssen)','opts':['muss','musst','müssen','müsst'],'a':0,'explain':'A müssen ich alakja: muss.'},
+                {'week':3,'type':'choice','q':'Ihr ___ arbeiten. (müssen)','opts':['muss','musst','müsst','müssen'],'a':2,'explain':'A müssen ihr alakja: müsst.'},
+                {'week':3,'type':'choice','q':'Hier ___ man nicht parken. (dürfen)','opts':['darf','darfst','dürft','dürfen'],'a':0,'explain':'A man nyelvtanilag er/sie/es-ként viselkedik: man darf.'},
+                {'week':3,'type':'choice','q':'Wir ___ nach Rom fahren. (wollen)','opts':['will','willst','wollt','wollen'],'a':3,'explain':'A wollen wir alakja: wollen.'},
+                {'week':3,'type':'choice','q':'___ du die Pop-Musik? (mögen)','opts':['Mag','Magst','Mögt','Mögen'],'a':1,'explain':'A mögen du alakja: magst.'},
+                {'week':3,'type':'choice','q':'Ich ___ eine Pizza essen. (möchten)','opts':['möchte','möchtest','möchtet','möchten'],'a':0,'explain':'A möchten ich alakja: möchte.'},
+                {'week':3,'type':'choice','q':'Melyik mondat helyes?','opts':['Ich kann schwimmen.','Ich schwimmen kann.','Ich kann geschwommen.'],'a':0,'explain':'Modaligénél a ragozott modalige áll a 2. helyen, a főige infinitívben a mondat végén.'},
+                {'week':3,'type':'choice','q':'Können leggyakrabban mit fejez ki?','opts':['képességet / lehetőséget','tiltást','kötelezettséget','felszólítást'],'a':0,'explain':'A tananyag összefoglalója szerint können = Fähigkeit / Möglichkeit.'},
+                {'week':3,'type':'choice','q':'Dürfen leggyakrabban mit fejez ki?','opts':['engedélyt vagy tiltást','képességet','szándékot','kívánságot'],'a':0,'explain':'Dürfen = Erlaubnis / Verbot.'},
+                {'week':3,'type':'choice','q':'Müssen leggyakrabban mit fejez ki?','opts':['kötelességet / szükségességet','kedvelést','engedélyt','szándékot'],'a':0,'explain':'Müssen = Pflicht / Notwendigkeit.'},
+                {'week':3,'type':'choice','q':'Sollen leggyakrabban mit fejez ki?','opts':['felszólítást / elvárást','képességet','tiltást','kedvelést'],'a':0,'explain':'Sollen = Aufforderung.'},
+                {'week':3,'type':'choice','q':'Möchten mit fejez ki?','opts':['kívánságot','tiltást','kötelességet','képességet'],'a':0,'explain':'Möchten = Wunsch, udvarias kívánság.'},
+                {'week':3,'type':'choice','q':'Melyik a helyes szórend?','opts':['Wir wollen nach Hause gehen.','Wir nach Hause wollen gehen.','Wir wollen gehen nach Hause.'],'a':0,'explain':'Subjekt + ragozott modalige + ... + főige infinitívben a mondat végén.'}
+              ]
+          data['grammar']=grammar
+          data_path.write_text('window.GERMAN_DATA = '+json.dumps(data,ensure_ascii=False,indent=2)+';\n',encoding='utf-8')
+
+          p=Path('index.html')
+          s=p.read_text(encoding='utf-8')
+          if "3:{title:'Modalverben – können, müssen und Überblick'" not in s:
+              chapter3=""",3:{title:'Modalverben – können, müssen und Überblick',grammarTitle:'3. fejezet nyelvtana',grammarHtml:`<h3>Modaligék jelentése</h3><div>Ebben a fejezetben a modaligéket nemcsak ragozzátok, hanem a jelentéskülönbségeiket is gyakoroljátok.</div><ul><li><b>können</b> = képesség vagy lehetőség: <span class=\"grammarExample\">Anna kann schwimmen.</span></li><li><b>wollen</b> = szándék, akarat: <span class=\"grammarExample\">Sie wollen verreisen.</span></li><li><b>dürfen</b> = engedély vagy tiltás: <span class=\"grammarExample\">Hier darf man nicht rauchen.</span></li><li><b>müssen</b> = kötelesség, szükségesség: <span class=\"grammarExample\">Er muss im Bett bleiben.</span></li><li><b>sollen</b> = felszólítás, elvárás: <span class=\"grammarExample\">Du sollst der Oma helfen.</span></li><li><b>mögen</b> = kedvelés: <span class=\"grammarExample\">Hans mag Grete.</span></li><li><b>möchten</b> = kívánság: <span class=\"grammarExample\">Laya möchte eine Pizza.</span></li></ul><h3 style=\"margin-top:14px\">Szórend modaligével</h3><div>A tananyag kiemelt képlete: <b>Subjekt – konjugiertes Modalverb – … – Vollverb im Infinitiv</b>. Magyarul: alany + ragozott modalige + a mondat többi része + a főige infinitív alakban a mondat végén. <span class=\"grammarExample\">Ich will heute Eis essen.</span> <span class=\"grammarExample\">Du musst zum Arzt gehen.</span></div><h3 style=\"margin-top:14px\">Fontos ragozási minták</h3><div>Egyes számban több modalige tőhangzója megváltozik, és az <b>ich</b> valamint <b>er/sie/es</b> alak gyakran azonos: <span class=\"grammarExample\">ich kann – er kann</span>, <span class=\"grammarExample\">ich muss – er muss</span>, <span class=\"grammarExample\">ich will – er will</span>, <span class=\"grammarExample\">ich darf – er darf</span>. Többes számban gyakran visszatér az infinitív tőalak: <span class=\"grammarExample\">wir können, wir müssen, wir dürfen, wir wollen</span>.</div><h3 style=\"margin-top:14px\">Können és müssen gyakorlati használata</h3><div>A képes feladatokban a <b>können / kann nicht</b> képességeket ír le, például sportot, zenét vagy hétköznapi tevékenységet. A <b>müssen</b> feladatokban azt mondjuk meg, mit kell valakinek megtennie: <span class=\"grammarExample\">Ich muss im Bett bleiben.</span></div>`}"""
+              # CHAPTER_INFO currently ends immediately before ;const G=[
+              s=s.replace('`}};const G=[','`'+chapter3+'};const G=[',1)
+          p.write_text(s,encoding='utf-8')
+
+      - name: Commit chapter 3
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data.js index.html
+          git diff --cached --quiet && exit 0
+          git commit -m "Add chapter 3 material"
+          git push
