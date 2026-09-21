@@ -2131,7 +2131,16 @@ window.GERMAN_DATA = {
       "title": "Modalverben – können, müssen und Überblick",
       "level": "B1"
     },
-    {\n      "week": 4,\n      "title": "Wohnen",\n      "level": "B1"\n    }
+    {
+      "week": 4,
+      "title": "Wohnen",
+      "level": "B1"
+    },
+    {
+      "week": 5,
+      "title": "Mein Alltag und reflexive Verben",
+      "level": "B1"
+    }
   ],
   "grammar": [
     {
