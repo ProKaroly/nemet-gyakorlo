@@ -1749,6 +1749,270 @@ window.GERMAN_DATA = {
       "example": "Die Blumen stecken in der Vase.",
       "example_hu": "A virágok a vázában vannak.",
       "week": 4
+    },
+    {
+      "de": "der Alltag",
+      "hu": "mindennapok, hétköznapok",
+      "cat": "Mindennapi rutin",
+      "example": "Mein Alltag beginnt früh.",
+      "example_hu": "A napirendem korán kezdődik.",
+      "week": 5
+    },
+    {
+      "de": "der Wecker",
+      "hu": "ébresztőóra",
+      "cat": "Reggeli rutin",
+      "example": "Ich höre meinen Wecker.",
+      "example_hu": "Hallom az ébresztőórámat.",
+      "week": 5
+    },
+    {
+      "de": "aufwachen",
+      "hu": "felébredni",
+      "cat": "Reggeli rutin",
+      "example": "Ich wache früh auf.",
+      "example_hu": "Korán felébredek.",
+      "week": 5
+    },
+    {
+      "de": "im Bett liegen",
+      "hu": "ágyban feküdni",
+      "cat": "Reggeli rutin",
+      "example": "Ich liege noch ein bisschen im Bett.",
+      "example_hu": "Még egy kicsit az ágyban fekszem.",
+      "week": 5
+    },
+    {
+      "de": "aufstehen",
+      "hu": "felkelni",
+      "cat": "Reggeli rutin",
+      "example": "Um 7 Uhr stehe ich auf.",
+      "example_hu": "Hét órakor kelek fel.",
+      "week": 5
+    },
+    {
+      "de": "ins Badezimmer gehen",
+      "hu": "bemeni a fürdőszobába",
+      "cat": "Reggeli rutin",
+      "example": "Dann gehe ich ins Badezimmer.",
+      "example_hu": "Aztán bemegyek a fürdőszobába.",
+      "week": 5
+    },
+    {
+      "de": "sich waschen",
+      "hu": "megmosakodni",
+      "cat": "Reflexív igék",
+      "example": "Ich wasche mich.",
+      "example_hu": "Megmosakszom.",
+      "week": 5
+    },
+    {
+      "de": "sich die Zähne putzen",
+      "hu": "fogat mosni",
+      "cat": "Reflexív igék",
+      "example": "Ich putze mir die Zähne.",
+      "example_hu": "Megmosom a fogamat.",
+      "week": 5
+    },
+    {
+      "de": "sich abtrocknen",
+      "hu": "megtörölközni",
+      "cat": "Reflexív igék",
+      "example": "Ich trockne mich mit dem Handtuch ab.",
+      "example_hu": "Megtörölközöm a törölközővel.",
+      "week": 5
+    },
+    {
+      "de": "sich kämmen",
+      "hu": "megfésülködni",
+      "cat": "Reflexív igék",
+      "example": "Ich kämme mich.",
+      "example_hu": "Megfésülködöm.",
+      "week": 5
+    },
+    {
+      "de": "sich anziehen",
+      "hu": "felöltözni",
+      "cat": "Reflexív igék",
+      "example": "Dann ziehe ich mich an.",
+      "example_hu": "Aztán felöltözöm.",
+      "week": 5
+    },
+    {
+      "de": "frühstücken",
+      "hu": "reggelizni",
+      "cat": "Reggeli rutin",
+      "example": "Ich gehe frühstücken.",
+      "example_hu": "Elmegyek reggelizni.",
+      "week": 5
+    },
+    {
+      "de": "das Frühstück",
+      "hu": "reggeli",
+      "cat": "Reggeli rutin",
+      "example": "Meine Frau macht das Frühstück.",
+      "example_hu": "A feleségem elkészíti a reggelit.",
+      "week": 5
+    },
+    {
+      "de": "das Geschirr spülen",
+      "hu": "elmosogatni",
+      "cat": "Mindennapi rutin",
+      "example": "Ich spüle das Geschirr.",
+      "example_hu": "Elmosogatok.",
+      "week": 5
+    },
+    {
+      "de": "die Sachen einpacken",
+      "hu": "összepakolni a dolgokat",
+      "cat": "Mindennapi rutin",
+      "example": "Ich packe meine Sachen ein.",
+      "example_hu": "Összepakolom a dolgaimat.",
+      "week": 5
+    },
+    {
+      "de": "zur Arbeit gehen",
+      "hu": "munkába menni",
+      "cat": "Közlekedés",
+      "example": "Ich gehe zu Fuß zur Arbeit.",
+      "example_hu": "Gyalog megyek munkába.",
+      "week": 5
+    },
+    {
+      "de": "zu Fuß",
+      "hu": "gyalog",
+      "cat": "Közlekedés",
+      "example": "Ich gehe zu Fuß.",
+      "example_hu": "Gyalog megyek.",
+      "week": 5
+    },
+    {
+      "de": "mit der Straßenbahn",
+      "hu": "villamossal",
+      "cat": "Közlekedés",
+      "example": "Wir fahren mit der Straßenbahn zur Schule.",
+      "example_hu": "Villamossal megyünk iskolába.",
+      "week": 5
+    },
+    {
+      "de": "mit dem Bus",
+      "hu": "busszal",
+      "cat": "Közlekedés",
+      "example": "Wir fahren heute mit dem Bus.",
+      "example_hu": "Ma busszal megyünk.",
+      "week": 5
+    },
+    {
+      "de": "mit dem Auto",
+      "hu": "autóval",
+      "cat": "Közlekedés",
+      "example": "Anna fährt oft mit dem Auto.",
+      "example_hu": "Anna gyakran autóval megy.",
+      "week": 5
+    },
+    {
+      "de": "nach Hause",
+      "hu": "haza",
+      "cat": "Helyhatározók",
+      "example": "Um 18 Uhr komme ich nach Hause.",
+      "example_hu": "18 órakor hazaérek.",
+      "week": 5
+    },
+    {
+      "de": "zu Hause",
+      "hu": "otthon",
+      "cat": "Helyhatározók",
+      "example": "Zu Hause ist es ruhig.",
+      "example_hu": "Otthon nyugodt.",
+      "week": 5
+    },
+    {
+      "de": "sich treffen",
+      "hu": "találkozni",
+      "cat": "Reflexív igék",
+      "example": "Um wie viel Uhr treffen wir uns?",
+      "example_hu": "Hány órakor találkozunk?",
+      "week": 5
+    },
+    {
+      "de": "sich vorstellen",
+      "hu": "bemutatkozni",
+      "cat": "Reflexív igék",
+      "example": "Kannst du dich vorstellen?",
+      "example_hu": "Be tudsz mutatkozni?",
+      "week": 5
+    },
+    {
+      "de": "sich interessieren für",
+      "hu": "érdeklődni valami iránt",
+      "cat": "Reflexív igék",
+      "example": "Ich interessiere mich für Politik.",
+      "example_hu": "Érdekel a politika.",
+      "week": 5
+    },
+    {
+      "de": "sich entschuldigen für",
+      "hu": "bocsánatot kérni valamiért",
+      "cat": "Reflexív igék",
+      "example": "Ich möchte mich für meine Verspätung entschuldigen.",
+      "example_hu": "Szeretnék elnézést kérni a késésemért.",
+      "week": 5
+    },
+    {
+      "de": "sich verbrennen",
+      "hu": "megégetni magát",
+      "cat": "Reflexív igék",
+      "example": "Ich habe mir die linke Hand verbrannt.",
+      "example_hu": "Megégettem a bal kezemet.",
+      "week": 5
+    },
+    {
+      "de": "sich anschauen",
+      "hu": "megnézni",
+      "cat": "Reflexív igék",
+      "example": "Schau dir die Aufgabe genau an!",
+      "example_hu": "Nézd meg pontosan a feladatot!",
+      "week": 5
+    },
+    {
+      "de": "sich fürchten vor",
+      "hu": "félni valamitől",
+      "cat": "Reflexív igék",
+      "example": "Fürchtest du dich vor der Dunkelheit?",
+      "example_hu": "Félsz a sötétségtől?",
+      "week": 5
+    },
+    {
+      "de": "die Morgentoilette",
+      "hu": "reggeli tisztálkodás",
+      "cat": "Reggeli rutin",
+      "example": "Die Morgentoilette dauert 15 Minuten.",
+      "example_hu": "A reggeli tisztálkodás 15 percig tart.",
+      "week": 5
+    },
+    {
+      "de": "das Handtuch",
+      "hu": "törölköző",
+      "cat": "Reggeli rutin",
+      "example": "Ich trockne mich mit dem Handtuch ab.",
+      "example_hu": "Megtörölközöm a törölközővel.",
+      "week": 5
+    },
+    {
+      "de": "die Dusche",
+      "hu": "zuhany",
+      "cat": "Reggeli rutin",
+      "example": "Ich nehme eine kalte Dusche.",
+      "example_hu": "Hideg zuhanyt veszek.",
+      "week": 5
+    },
+    {
+      "de": "der Arbeitstag",
+      "hu": "munkanap",
+      "cat": "Mindennapi rutin",
+      "example": "Mein Arbeitstag beginnt um halb neun.",
+      "example_hu": "A munkanapom fél kilenckor kezdődik.",
+      "week": 5
     }
   ],
   "quiz": [
@@ -2458,6 +2722,227 @@ window.GERMAN_DATA = {
         "liegt auf"
       ],
       "explain": "Helyzet: auf + Dativ."
+    },
+    {
+      "week": 5,
+      "type": "choice",
+      "q": "Ich ziehe … schnell an.",
+      "opts": [
+        "mich",
+        "mir"
+      ],
+      "a": 0,
+      "explain": "Az eredeti reflexív feladat. Ha nincs külön tárgy, az Akkusativ reflexív névmás kell: ich ziehe mich an."
+    },
+    {
+      "week": 5,
+      "type": "choice",
+      "q": "Du ziehst … einen Mantel an.",
+      "opts": [
+        "dich",
+        "dir"
+      ],
+      "a": 1,
+      "explain": "Van Akkusativ tárgy: einen Mantel. Ezért a reflexív névmás Dativ: du ziehst dir einen Mantel an."
+    },
+    {
+      "week": 5,
+      "type": "choice",
+      "q": "Meine Tochter wäscht … gründlich.",
+      "opts": [
+        "dich",
+        "sich"
+      ],
+      "a": 1,
+      "explain": "Meine Tochter = sie, ezért: sie wäscht sich."
+    },
+    {
+      "week": 5,
+      "type": "choice",
+      "q": "Ich setze … die Brille auf.",
+      "opts": [
+        "mich",
+        "mir"
+      ],
+      "a": 1,
+      "explain": "A die Brille már Akkusativ tárgy, ezért: ich setze mir die Brille auf."
+    },
+    {
+      "week": 5,
+      "type": "choice",
+      "q": "Wir setzen … ans Fenster.",
+      "opts": [
+        "uns",
+        "mir"
+      ],
+      "a": 0,
+      "explain": "Wir reflexív névmása Akkusativban és Dativban is uns."
+    },
+    {
+      "week": 5,
+      "type": "choice",
+      "q": "Ich schminke … jeden Tag.",
+      "opts": [
+        "mich",
+        "mir"
+      ],
+      "a": 0,
+      "explain": "Nincs külön tárgy: ich schminke mich."
+    },
+    {
+      "week": 5,
+      "type": "choice",
+      "q": "Du schminkst … nur die Augen.",
+      "opts": [
+        "dich",
+        "dir"
+      ],
+      "a": 1,
+      "explain": "A die Augen külön tárgy, ezért: du schminkst dir die Augen."
+    },
+    {
+      "week": 5,
+      "type": "text",
+      "q": "Ich _____________ ___________ 10 Minuten. (sich waschen)",
+      "answers": [
+        "wasche mich",
+        "ich wasche mich"
+      ],
+      "explain": "A Mein Alltag PDF V/a mondata: ich wasche mich."
+    },
+    {
+      "week": 5,
+      "type": "text",
+      "q": "Die Mutter _________ _________. (sich kämmen)",
+      "answers": [
+        "kämmt sich",
+        "die mutter kämmt sich"
+      ],
+      "explain": "Er/sie/es reflexív névmása: sich."
+    },
+    {
+      "week": 5,
+      "type": "text",
+      "q": "____________ du ____________ lange _____? (sich anziehen)",
+      "answers": [
+        "ziehst du dich lange an",
+        "ziehst dich lange an"
+      ],
+      "explain": "Elváló igekötős reflexív ige: du ziehst dich ... an."
+    },
+    {
+      "week": 5,
+      "type": "text",
+      "q": "Er ___________ _____________ mit dem Handtuch ______. (sich abtrocknen)",
+      "answers": [
+        "trocknet sich mit dem handtuch ab",
+        "trocknet sich ab"
+      ],
+      "explain": "sich abtrocknen elváló ige: er trocknet sich ... ab."
+    },
+    {
+      "week": 5,
+      "type": "text",
+      "q": "Um wie viel ___________ wir ___________? (sich treffen)",
+      "answers": [
+        "treffen wir uns",
+        "treffen uns"
+      ],
+      "explain": "Wir reflexív névmása: uns."
+    },
+    {
+      "week": 5,
+      "type": "choice",
+      "q": "Um 18 Uhr komme ich __________ Hause.",
+      "opts": [
+        "nach",
+        "zu"
+      ],
+      "a": 0,
+      "explain": "nach Hause = haza, irány."
+    },
+    {
+      "week": 5,
+      "type": "choice",
+      "q": "Meine Kinder sind schon _________ Hause.",
+      "opts": [
+        "nach",
+        "zu"
+      ],
+      "a": 1,
+      "explain": "zu Hause = otthon, hely."
+    },
+    {
+      "week": 5,
+      "type": "choice",
+      "q": "Wann gehst du _______ Hause?",
+      "opts": [
+        "nach",
+        "zu"
+      ],
+      "a": 0,
+      "explain": "Mozgás/irány: nach Hause."
+    },
+    {
+      "week": 5,
+      "type": "choice",
+      "q": "Bist du schon _____ Hause?",
+      "opts": [
+        "nach",
+        "zu"
+      ],
+      "a": 1,
+      "explain": "Helyzet: zu Hause."
+    },
+    {
+      "week": 5,
+      "type": "text",
+      "q": "Hast du _____ die Zähne ____________?",
+      "answers": [
+        "dir die zähne geputzt",
+        "dir die zähne geputzt?"
+      ],
+      "explain": "A reflexive-verben feladat eredeti mondata. Testrésznél gyakran Dativ reflexív névmás: dir."
+    },
+    {
+      "week": 5,
+      "type": "text",
+      "q": "Ich möchte _____ für meine Verspätung _________________.",
+      "answers": [
+        "mich für meine verspätung entschuldigen",
+        "mich entschuldigen"
+      ],
+      "explain": "sich entschuldigen für + Akkusativ."
+    },
+    {
+      "week": 5,
+      "type": "text",
+      "q": "Ich habe _____ die linke Hand ____________.",
+      "answers": [
+        "mir die linke hand verbrannt",
+        "mir verbrannt"
+      ],
+      "explain": "Testrész külön tárgyként áll, ezért Dativ reflexív névmás: mir."
+    },
+    {
+      "week": 5,
+      "type": "text",
+      "q": "____________ du ______ vor der Dunkelheit?",
+      "answers": [
+        "fürchtest du dich",
+        "fürchtest dich"
+      ],
+      "explain": "sich fürchten vor + Dativ."
+    },
+    {
+      "week": 5,
+      "type": "text",
+      "q": "Ich ______________ _____ für die Politik.",
+      "answers": [
+        "interessiere mich für die politik",
+        "interessiere mich"
+      ],
+      "explain": "sich interessieren für + Akkusativ."
     }
   ]
 };
