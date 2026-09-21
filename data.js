@@ -1405,6 +1405,350 @@ window.GERMAN_DATA = {
       "example": "Die Kinder dürfen die Bilder nicht berühren.",
       "example_hu": "A gyerekeknek nem szabad megérinteniük a képeket.",
       "week": 3
+    },
+    {
+      "de": "die Wohnung",
+      "hu": "lakás",
+      "cat": "Lakás és ház",
+      "example": "Ich wohne in einer Wohnung im Zentrum.",
+      "example_hu": "Egy belvárosi lakásban lakom.",
+      "week": 4
+    },
+    {
+      "de": "das Haus",
+      "hu": "ház",
+      "cat": "Lakás és ház",
+      "example": "Das Haus ist modern, gemütlich und groß.",
+      "example_hu": "A ház modern, otthonos és nagy.",
+      "week": 4
+    },
+    {
+      "de": "das Reihenhaus",
+      "hu": "sorház",
+      "cat": "Lakás és ház",
+      "example": "Wir wohnen in einem Reihenhaus.",
+      "example_hu": "Egy sorházban lakunk.",
+      "week": 4
+    },
+    {
+      "de": "das Einfamilienhaus",
+      "hu": "családi ház",
+      "cat": "Lakás és ház",
+      "example": "Sie wohnt in einem Einfamilienhaus.",
+      "example_hu": "Egy családi házban lakik.",
+      "week": 4
+    },
+    {
+      "de": "das Zentrum",
+      "hu": "városközpont",
+      "cat": "Lakás és ház",
+      "example": "Die Wohnung liegt im Zentrum.",
+      "example_hu": "A lakás a városközpontban van.",
+      "week": 4
+    },
+    {
+      "de": "der Stadtrand",
+      "hu": "városszél",
+      "cat": "Lakás és ház",
+      "example": "Das Haus liegt am Stadtrand.",
+      "example_hu": "A ház a város szélén van.",
+      "week": 4
+    },
+    {
+      "de": "auf dem Land",
+      "hu": "vidéken",
+      "cat": "Lakás és ház",
+      "example": "Ich wohne auf dem Land.",
+      "example_hu": "Vidéken lakom.",
+      "week": 4
+    },
+    {
+      "de": "das Wohnzimmer",
+      "hu": "nappali",
+      "cat": "Helyiségek",
+      "example": "Das Wohnzimmer ist sehr gemütlich.",
+      "example_hu": "A nappali nagyon otthonos.",
+      "week": 4
+    },
+    {
+      "de": "die Küche",
+      "hu": "konyha",
+      "cat": "Helyiségek",
+      "example": "Die Küche ist praktisch.",
+      "example_hu": "A konyha praktikus.",
+      "week": 4
+    },
+    {
+      "de": "das Kinderzimmer",
+      "hu": "gyerekszoba",
+      "cat": "Helyiségek",
+      "example": "Das Kinderzimmer ist klein.",
+      "example_hu": "A gyerekszoba kicsi.",
+      "week": 4
+    },
+    {
+      "de": "das Elternzimmer",
+      "hu": "szülői háló",
+      "cat": "Helyiségek",
+      "example": "Das Elternzimmer ist groß.",
+      "example_hu": "A szülői háló nagy.",
+      "week": 4
+    },
+    {
+      "de": "das Arbeitszimmer",
+      "hu": "dolgozószoba",
+      "cat": "Helyiségek",
+      "example": "In der Wohnung gibt es ein Arbeitszimmer.",
+      "example_hu": "A lakásban van egy dolgozószoba.",
+      "week": 4
+    },
+    {
+      "de": "das Schlafzimmer",
+      "hu": "hálószoba",
+      "cat": "Helyiségek",
+      "example": "Die Wohnung hat zwei Schlafzimmer.",
+      "example_hu": "A lakásnak két hálószobája van.",
+      "week": 4
+    },
+    {
+      "de": "das Badezimmer",
+      "hu": "fürdőszoba",
+      "cat": "Helyiségek",
+      "example": "Das Badezimmer ist neben dem Schlafzimmer.",
+      "example_hu": "A fürdőszoba a hálószoba mellett van.",
+      "week": 4
+    },
+    {
+      "de": "die Toilette",
+      "hu": "WC, mosdó",
+      "cat": "Helyiségek",
+      "example": "Die Wohnung hat eine separate Toilette.",
+      "example_hu": "A lakásnak külön WC-je van.",
+      "week": 4
+    },
+    {
+      "de": "der Flur",
+      "hu": "előszoba, folyosó",
+      "cat": "Helyiségek",
+      "example": "Im Flur steht ein Schrank.",
+      "example_hu": "Az előszobában áll egy szekrény.",
+      "week": 4
+    },
+    {
+      "de": "der Balkon",
+      "hu": "erkély",
+      "cat": "Lakás és ház",
+      "example": "Die Wohnung hat einen Balkon.",
+      "example_hu": "A lakásnak van erkélye.",
+      "week": 4
+    },
+    {
+      "de": "die Terrasse",
+      "hu": "terasz",
+      "cat": "Lakás és ház",
+      "example": "Das Haus hat eine Terrasse.",
+      "example_hu": "A háznak van terasza.",
+      "week": 4
+    },
+    {
+      "de": "der Garten",
+      "hu": "kert",
+      "cat": "Lakás és ház",
+      "example": "Das Haus hat einen großen Garten.",
+      "example_hu": "A háznak nagy kertje van.",
+      "week": 4
+    },
+    {
+      "de": "das Bett",
+      "hu": "ágy",
+      "cat": "Bútorok",
+      "example": "Das Bett steht im Zimmer.",
+      "example_hu": "Az ágy a szobában áll.",
+      "week": 4
+    },
+    {
+      "de": "der Schreibtisch",
+      "hu": "íróasztal",
+      "cat": "Bútorok",
+      "example": "Der Schreibtisch steht am Fenster.",
+      "example_hu": "Az íróasztal az ablaknál áll.",
+      "week": 4
+    },
+    {
+      "de": "der Sessel",
+      "hu": "fotel",
+      "cat": "Bútorok",
+      "example": "Der Sessel steht neben der Couch.",
+      "example_hu": "A fotel a kanapé mellett áll.",
+      "week": 4
+    },
+    {
+      "de": "der Schrank",
+      "hu": "szekrény",
+      "cat": "Bútorok",
+      "example": "Der Schrank ist groß.",
+      "example_hu": "A szekrény nagy.",
+      "week": 4
+    },
+    {
+      "de": "das Regal",
+      "hu": "polc, polcos szekrény",
+      "cat": "Bútorok",
+      "example": "Die Bücher stehen im Regal.",
+      "example_hu": "A könyvek a polcon állnak.",
+      "week": 4
+    },
+    {
+      "de": "der Fernseher",
+      "hu": "televízió",
+      "cat": "Bútorok",
+      "example": "Der Fernseher steht neben dem Sessel.",
+      "example_hu": "A televízió a fotel mellett áll.",
+      "week": 4
+    },
+    {
+      "de": "der Teppich",
+      "hu": "szőnyeg",
+      "cat": "Bútorok",
+      "example": "Der Teppich liegt auf dem Boden.",
+      "example_hu": "A szőnyeg a padlón fekszik.",
+      "week": 4
+    },
+    {
+      "de": "der Vorhang",
+      "hu": "függöny",
+      "cat": "Bútorok",
+      "example": "Die Vorhänge hängen vor dem Fenster.",
+      "example_hu": "A függönyök az ablak előtt lógnak.",
+      "week": 4
+    },
+    {
+      "de": "die Pflanze",
+      "hu": "növény",
+      "cat": "Bútorok",
+      "example": "Die Pflanze steht auf dem Tischchen.",
+      "example_hu": "A növény a kis asztalon áll.",
+      "week": 4
+    },
+    {
+      "de": "die Vase",
+      "hu": "váza",
+      "cat": "Bútorok",
+      "example": "Die Blumen stecken in der Vase.",
+      "example_hu": "A virágok a vázában vannak.",
+      "week": 4
+    },
+    {
+      "de": "die Decke",
+      "hu": "mennyezet",
+      "cat": "Lakás részei",
+      "example": "Der Luster hängt an der Decke.",
+      "example_hu": "A csillár a mennyezetről lóg.",
+      "week": 4
+    },
+    {
+      "de": "der Boden",
+      "hu": "padló",
+      "cat": "Lakás részei",
+      "example": "Der Teppich liegt auf dem Boden.",
+      "example_hu": "A szőnyeg a padlón van.",
+      "week": 4
+    },
+    {
+      "de": "gemütlich",
+      "hu": "otthonos, kényelmes",
+      "cat": "Leírás",
+      "example": "Das Wohnzimmer ist gemütlich.",
+      "example_hu": "A nappali otthonos.",
+      "week": 4
+    },
+    {
+      "de": "praktisch",
+      "hu": "praktikus",
+      "cat": "Leírás",
+      "example": "Die Küche ist praktisch.",
+      "example_hu": "A konyha praktikus.",
+      "week": 4
+    },
+    {
+      "de": "nützlich",
+      "hu": "hasznos",
+      "cat": "Leírás",
+      "example": "Der Schrank ist sehr nützlich.",
+      "example_hu": "A szekrény nagyon hasznos.",
+      "week": 4
+    },
+    {
+      "de": "die Wohnungssuche",
+      "hu": "lakáskeresés",
+      "cat": "Lakáskeresés",
+      "example": "Wir sind auf Wohnungssuche.",
+      "example_hu": "Lakást keresünk.",
+      "week": 4
+    },
+    {
+      "de": "die Miete",
+      "hu": "lakbér",
+      "cat": "Lakáskeresés",
+      "example": "Die Miete beträgt 360 Euro im Monat.",
+      "example_hu": "A lakbér havi 360 euró.",
+      "week": 4
+    },
+    {
+      "de": "die Nebenkosten",
+      "hu": "rezsi, járulékos költségek",
+      "cat": "Lakáskeresés",
+      "example": "Zur Miete kommen noch Nebenkosten.",
+      "example_hu": "A lakbérhez még járulékos költségek jönnek.",
+      "week": 4
+    },
+    {
+      "de": "die Anzeige",
+      "hu": "hirdetés",
+      "cat": "Lakáskeresés",
+      "example": "Ich lese eine Wohnungsanzeige.",
+      "example_hu": "Egy lakáshirdetést olvasok.",
+      "week": 4
+    },
+    {
+      "de": "der Quadratmeter",
+      "hu": "négyzetméter",
+      "cat": "Lakáskeresés",
+      "example": "Die Wohnung ist 48 Quadratmeter groß.",
+      "example_hu": "A lakás 48 négyzetméteres.",
+      "week": 4
+    },
+    {
+      "de": "stehen",
+      "hu": "állni, elhelyezkedni",
+      "cat": "Helyviszonyok",
+      "example": "Der Fernseher steht neben dem Sessel.",
+      "example_hu": "A televízió a fotel mellett áll.",
+      "week": 4
+    },
+    {
+      "de": "liegen",
+      "hu": "feküdni, elhelyezkedni",
+      "cat": "Helyviszonyok",
+      "example": "Die Zeitung liegt auf dem Tisch.",
+      "example_hu": "Az újság az asztalon fekszik.",
+      "week": 4
+    },
+    {
+      "de": "hängen",
+      "hu": "lógni, függni",
+      "cat": "Helyviszonyok",
+      "example": "Die Bilder hängen an der Wand.",
+      "example_hu": "A képek a falon lógnak.",
+      "week": 4
+    },
+    {
+      "de": "stecken",
+      "hu": "benne lenni, beledugva lenni",
+      "cat": "Helyviszonyok",
+      "example": "Die Blumen stecken in der Vase.",
+      "example_hu": "A virágok a vázában vannak.",
+      "week": 4
     }
   ],
   "quiz": [
@@ -1522,7 +1866,8 @@ window.GERMAN_DATA = {
       "week": 3,
       "title": "Modalverben – können, müssen und Überblick",
       "level": "B1"
-    }
+    },
+    {\n      "week": 4,\n      "title": "Wohnen",\n      "level": "B1"\n    }
   ],
   "grammar": [
     {
@@ -1911,6 +2256,208 @@ window.GERMAN_DATA = {
       ],
       "a": 0,
       "explain": "Subjekt + ragozott modalige + ... + főige infinitívben a mondat végén."
+    },
+    {
+      "week": 4,
+      "type": "text",
+      "q": "Die Zeitung ........................................dem Tisch.",
+      "answers": [
+        "liegt auf dem Tisch",
+        "liegt auf"
+      ],
+      "explain": "Az eredeti 14. feladat mondata. Helyet írunk le, ezért Dativ: auf dem Tisch."
+    },
+    {
+      "week": 4,
+      "type": "text",
+      "q": "Das Tischchen mit dem Laptop ........................................ dem Sessel und der Couch.",
+      "answers": [
+        "steht zwischen dem Sessel und der Couch",
+        "steht zwischen"
+      ],
+      "explain": "Helyzetet írunk le: zwischen + Dativ."
+    },
+    {
+      "week": 4,
+      "type": "text",
+      "q": "Die Vorhänge ..........................................dem Fenster.",
+      "answers": [
+        "hängen vor dem Fenster",
+        "hängen vor"
+      ],
+      "explain": "Helyzetet írunk le: vor + Dativ."
+    },
+    {
+      "week": 4,
+      "type": "text",
+      "q": "Die Pflanze ...........................................dem Tischchen.",
+      "answers": [
+        "steht auf dem Tischchen",
+        "steht auf"
+      ],
+      "explain": "Helyzet: auf + Dativ."
+    },
+    {
+      "week": 4,
+      "type": "text",
+      "q": "Die Bücher ..................................... dem Regal.",
+      "answers": [
+        "stehen im Regal",
+        "stehen in dem Regal",
+        "stehen im"
+      ],
+      "explain": "im = in dem; helyet ír le, ezért Dativ."
+    },
+    {
+      "week": 4,
+      "type": "text",
+      "q": "Das Regal ........................der Wand.",
+      "answers": [
+        "hängt an der Wand",
+        "hängt an"
+      ],
+      "explain": "Helyzet: an + Dativ."
+    },
+    {
+      "week": 4,
+      "type": "text",
+      "q": "Der Fernseher ..................................dem Sessel.",
+      "answers": [
+        "steht neben dem Sessel",
+        "steht neben"
+      ],
+      "explain": "Helyzet: neben + Dativ."
+    },
+    {
+      "week": 4,
+      "type": "text",
+      "q": "Die Vase ................................dem Fernseher.",
+      "answers": [
+        "steht auf dem Fernseher",
+        "steht auf"
+      ],
+      "explain": "Helyzet: auf + Dativ."
+    },
+    {
+      "week": 4,
+      "type": "text",
+      "q": "Der Computer ....................................dem Tischchen.",
+      "answers": [
+        "steht auf dem Tischchen",
+        "steht auf"
+      ],
+      "explain": "Helyzet: auf + Dativ."
+    },
+    {
+      "week": 4,
+      "type": "text",
+      "q": "Drei Bücher ........................................der Couch.",
+      "answers": [
+        "liegen auf der Couch",
+        "liegen auf"
+      ],
+      "explain": "Helyzet: auf + Dativ."
+    },
+    {
+      "week": 4,
+      "type": "text",
+      "q": "Die Brille ......................................dem Sessel.",
+      "answers": [
+        "liegt auf dem Sessel",
+        "liegt auf"
+      ],
+      "explain": "Helyzet: auf + Dativ."
+    },
+    {
+      "week": 4,
+      "type": "text",
+      "q": "Der Luster ...................................der Decke.",
+      "answers": [
+        "hängt an der Decke",
+        "hängt an"
+      ],
+      "explain": "Helyzet: an + Dativ."
+    },
+    {
+      "week": 4,
+      "type": "text",
+      "q": "Der Schuh .....................................dem Teppich.......................dem Tischchen.",
+      "answers": [
+        "liegt auf dem Teppich unter dem Tischchen",
+        "liegt auf dem Teppich unter"
+      ],
+      "explain": "Két helyviszony: auf dem Teppich, unter dem Tischchen."
+    },
+    {
+      "week": 4,
+      "type": "text",
+      "q": "Die Kissen ............................... der Couch.",
+      "answers": [
+        "liegen auf der Couch",
+        "liegen auf"
+      ],
+      "explain": "Helyzet: auf + Dativ."
+    },
+    {
+      "week": 4,
+      "type": "text",
+      "q": "Die Blumen .................................der Vase.",
+      "answers": [
+        "stecken in der Vase",
+        "stecken in"
+      ],
+      "explain": "Helyzet: in + Dativ."
+    },
+    {
+      "week": 4,
+      "type": "text",
+      "q": "Die Uhr........................................dem Regal.",
+      "answers": [
+        "steht im Regal",
+        "steht in dem Regal",
+        "steht im"
+      ],
+      "explain": "im = in dem; helyet írunk le."
+    },
+    {
+      "week": 4,
+      "type": "text",
+      "q": "Die Bilder ....................................der Wand.",
+      "answers": [
+        "hängen an der Wand",
+        "hängen an"
+      ],
+      "explain": "Helyzet: an + Dativ."
+    },
+    {
+      "week": 4,
+      "type": "text",
+      "q": "Die Schultasche .........................................dem Sessel und der Couch.",
+      "answers": [
+        "steht zwischen dem Sessel und der Couch",
+        "steht zwischen"
+      ],
+      "explain": "Helyzet: zwischen + Dativ."
+    },
+    {
+      "week": 4,
+      "type": "text",
+      "q": "Das Tischchen mit der Zeitung .........................................der Couch.",
+      "answers": [
+        "steht vor der Couch",
+        "steht vor"
+      ],
+      "explain": "Helyzet: vor + Dativ."
+    },
+    {
+      "week": 4,
+      "type": "text",
+      "q": "Der Teppich................................................dem Boden.",
+      "answers": [
+        "liegt auf dem Boden",
+        "liegt auf"
+      ],
+      "explain": "Helyzet: auf + Dativ."
     }
   ]
 };
