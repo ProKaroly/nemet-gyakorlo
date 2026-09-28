@@ -2341,6 +2341,478 @@ window.GERMAN_DATA = {
       "example": "Im Winter ist es oft glatt.",
       "example_hu": "Télen gyakran csúszós az út.",
       "week": 6
+    },
+    {
+      "de": "das Dorf",
+      "hu": "falu",
+      "cat": "Lakóhely",
+      "example": "Wohnst du in einem Dorf oder in einer Stadt?",
+      "example_hu": "Faluban vagy városban laksz?",
+      "week": 7
+    },
+    {
+      "de": "die Stadt",
+      "hu": "város",
+      "cat": "Lakóhely",
+      "example": "Ich wohne lieber in der Stadt.",
+      "example_hu": "Inkább a városban lakom.",
+      "week": 7
+    },
+    {
+      "de": "das Stadtzentrum",
+      "hu": "városközpont",
+      "cat": "Lakóhely",
+      "example": "Die Wohnung liegt im Stadtzentrum.",
+      "example_hu": "A lakás a városközpontban van.",
+      "week": 7
+    },
+    {
+      "de": "die Etage",
+      "hu": "emelet",
+      "cat": "Lakóhely",
+      "example": "Wie viele Etagen hat das Haus?",
+      "example_hu": "Hány emeletes a ház?",
+      "week": 7
+    },
+    {
+      "de": "der Stock",
+      "hu": "emelet",
+      "cat": "Lakóhely",
+      "example": "In welchem Stock ist die Wohnung?",
+      "example_hu": "Hányadik emeleten van a lakás?",
+      "week": 7
+    },
+    {
+      "de": "die Wohnfläche",
+      "hu": "lakóterület",
+      "cat": "Lakásleírás",
+      "example": "Die Wohnfläche beträgt 65 Quadratmeter.",
+      "example_hu": "A lakóterület 65 négyzetméter.",
+      "week": 7
+    },
+    {
+      "de": "das WG-Zimmer",
+      "hu": "szoba közös lakásban",
+      "cat": "Lakásleírás",
+      "example": "Wie groß ist dein WG-Zimmer?",
+      "example_hu": "Mekkora a szobád a közös lakásban?",
+      "week": 7
+    },
+    {
+      "de": "die Garage",
+      "hu": "garázs",
+      "cat": "Lakásleírás",
+      "example": "Hast du eine Garage?",
+      "example_hu": "Van garázsod?",
+      "week": 7
+    },
+    {
+      "de": "der Keller",
+      "hu": "pince",
+      "cat": "Lakásleírás",
+      "example": "Habt ihr einen Keller?",
+      "example_hu": "Van pincétek?",
+      "week": 7
+    },
+    {
+      "de": "die Bushaltestelle",
+      "hu": "buszmegálló",
+      "cat": "Környék",
+      "example": "Gibt es eine Bushaltestelle in der Nähe?",
+      "example_hu": "Van buszmegálló a közelben?",
+      "week": 7
+    },
+    {
+      "de": "die Straßenbahnhaltestelle",
+      "hu": "villamosmegálló",
+      "cat": "Környék",
+      "example": "Gibt es eine Straßenbahnhaltestelle in der Nähe?",
+      "example_hu": "Van villamosmegálló a közelben?",
+      "week": 7
+    },
+    {
+      "de": "die U-Bahn-Station",
+      "hu": "metróállomás",
+      "cat": "Környék",
+      "example": "Gibt es eine U-Bahn-Station in der Nähe?",
+      "example_hu": "Van metróállomás a közelben?",
+      "week": 7
+    },
+    {
+      "de": "in der Nähe",
+      "hu": "a közelben",
+      "cat": "Környék",
+      "example": "Was gibt es in der Nähe von der Wohnung?",
+      "example_hu": "Mi van a lakás közelében?",
+      "week": 7
+    },
+    {
+      "de": "der Wohnwagen",
+      "hu": "lakókocsi",
+      "cat": "Lakhatás",
+      "example": "Sabine wohnt in einem Wohnwagen.",
+      "example_hu": "Sabine egy lakókocsiban lakik.",
+      "week": 7
+    },
+    {
+      "de": "der Campingplatz",
+      "hu": "kemping",
+      "cat": "Lakhatás",
+      "example": "Sie lebt auf einem Campingplatz.",
+      "example_hu": "Egy kempingben él.",
+      "week": 7
+    },
+    {
+      "de": "das Wohnheim",
+      "hu": "kollégium, diákszállás",
+      "cat": "Lakhatás",
+      "example": "Im Wohnheim gibt es viele Zimmer.",
+      "example_hu": "A kollégiumban sok szoba van.",
+      "week": 7
+    },
+    {
+      "de": "das Studentenwohnheim",
+      "hu": "diákkollégium",
+      "cat": "Lakhatás",
+      "example": "An der Universität gibt es Studentenwohnheime.",
+      "example_hu": "Az egyetemnél vannak diákkollégiumok.",
+      "week": 7
+    },
+    {
+      "de": "das Traumhaus",
+      "hu": "álomház",
+      "cat": "Lakásleírás",
+      "example": "Mein Traumhaus liegt am Stadtrand.",
+      "example_hu": "Az álomházam a város szélén van.",
+      "week": 7
+    },
+    {
+      "de": "die Lage",
+      "hu": "elhelyezkedés",
+      "cat": "Lakásleírás",
+      "example": "Die Lage der Wohnung ist zentral.",
+      "example_hu": "A lakás elhelyezkedése központi.",
+      "week": 7
+    },
+    {
+      "de": "die Umgebung",
+      "hu": "környék",
+      "cat": "Lakásleírás",
+      "example": "Die Umgebung ist ruhig.",
+      "example_hu": "A környék nyugodt.",
+      "week": 7
+    },
+    {
+      "de": "die Großstadt",
+      "hu": "nagyváros",
+      "cat": "Lakóhely",
+      "example": "Ich möchte in einer Großstadt leben.",
+      "example_hu": "Nagyvárosban szeretnék élni.",
+      "week": 7
+    },
+    {
+      "de": "die Kleinstadt",
+      "hu": "kisváros",
+      "cat": "Lakóhely",
+      "example": "Eine Kleinstadt ist oft ruhiger.",
+      "example_hu": "Egy kisváros gyakran nyugodtabb.",
+      "week": 7
+    },
+    {
+      "de": "der Altbau",
+      "hu": "régi építésű ház",
+      "cat": "Lakástípus",
+      "example": "Sie wohnt in einem Altbau.",
+      "example_hu": "Régi építésű házban lakik.",
+      "week": 7
+    },
+    {
+      "de": "der Neubau",
+      "hu": "új építésű ház",
+      "cat": "Lakástípus",
+      "example": "Der Neubau ist modern.",
+      "example_hu": "Az új építésű ház modern.",
+      "week": 7
+    },
+    {
+      "de": "der Plattenbau",
+      "hu": "panelház",
+      "cat": "Lakástípus",
+      "example": "Früher wohnten sie in einem Plattenbau.",
+      "example_hu": "Korábban panelházban laktak.",
+      "week": 7
+    },
+    {
+      "de": "das Zweifamilienhaus",
+      "hu": "kétlakásos családi ház",
+      "cat": "Lakástípus",
+      "example": "Das ist ein Zweifamilienhaus.",
+      "example_hu": "Ez egy kétlakásos családi ház.",
+      "week": 7
+    },
+    {
+      "de": "das Mehrfamilienhaus",
+      "hu": "többlakásos ház",
+      "cat": "Lakástípus",
+      "example": "Sie wohnen in einem Mehrfamilienhaus.",
+      "example_hu": "Egy többlakásos házban laknak.",
+      "week": 7
+    },
+    {
+      "de": "das Esszimmer",
+      "hu": "étkező",
+      "cat": "Helyiségek",
+      "example": "Hat die Wohnung ein Esszimmer?",
+      "example_hu": "Van a lakásban étkező?",
+      "week": 7
+    },
+    {
+      "de": "das Gästezimmer",
+      "hu": "vendégszoba",
+      "cat": "Helyiségek",
+      "example": "Das Haus hat ein Gästezimmer.",
+      "example_hu": "A házban van vendégszoba.",
+      "week": 7
+    },
+    {
+      "de": "das Wohnungsangebot",
+      "hu": "lakásajánlat",
+      "cat": "Lakáskeresés",
+      "example": "Welches Wohnungsangebot ist am besten?",
+      "example_hu": "Melyik lakásajánlat a legjobb?",
+      "week": 7
+    },
+    {
+      "de": "die Nebenkosten",
+      "hu": "járulékos költségek, rezsi",
+      "cat": "Lakáskeresés",
+      "example": "Die Nebenkosten sind inklusive.",
+      "example_hu": "A rezsi benne van az árban.",
+      "week": 7
+    },
+    {
+      "de": "der Mindestaufenthalt",
+      "hu": "minimális tartózkodási idő",
+      "cat": "Lakáskeresés",
+      "example": "Der Mindestaufenthalt beträgt sieben Tage.",
+      "example_hu": "A minimális tartózkodás hét nap.",
+      "week": 7
+    },
+    {
+      "de": "die Bettwäsche",
+      "hu": "ágynemű",
+      "cat": "Lakásfelszerelés",
+      "example": "Bettwäsche kann gegen Gebühr geliehen werden.",
+      "example_hu": "Az ágynemű díj ellenében kölcsönözhető.",
+      "week": 7
+    },
+    {
+      "de": "der Kühlschrank",
+      "hu": "hűtőszekrény",
+      "cat": "Lakásfelszerelés",
+      "example": "In der Küche steht ein Kühlschrank.",
+      "example_hu": "A konyhában van egy hűtő.",
+      "week": 7
+    },
+    {
+      "de": "die Kaffeemaschine",
+      "hu": "kávéfőző",
+      "cat": "Lakásfelszerelés",
+      "example": "Die Küche hat eine Kaffeemaschine.",
+      "example_hu": "A konyhában van kávéfőző.",
+      "week": 7
+    },
+    {
+      "de": "der Wasserkocher",
+      "hu": "vízforraló",
+      "cat": "Lakásfelszerelés",
+      "example": "Im Appartement gibt es einen Wasserkocher.",
+      "example_hu": "Az apartmanban van vízforraló.",
+      "week": 7
+    },
+    {
+      "de": "die Unterhaltungsmöglichkeit",
+      "hu": "szórakozási lehetőség",
+      "cat": "Stadt és Land",
+      "example": "In der Stadt gibt es viele Unterhaltungsmöglichkeiten.",
+      "example_hu": "A városban sok szórakozási lehetőség van.",
+      "week": 7
+    },
+    {
+      "de": "die Landschaft",
+      "hu": "táj",
+      "cat": "Stadt és Land",
+      "example": "Auf dem Land gibt es eine schöne Landschaft.",
+      "example_hu": "Vidéken szép a táj.",
+      "week": 7
+    },
+    {
+      "de": "der Verkehr",
+      "hu": "forgalom",
+      "cat": "Stadt és Land",
+      "example": "In der Stadt gibt es viel Verkehr.",
+      "example_hu": "A városban nagy a forgalom.",
+      "week": 7
+    },
+    {
+      "de": "die Ruhe",
+      "hu": "nyugalom",
+      "cat": "Stadt és Land",
+      "example": "Auf dem Land hat man mehr Ruhe.",
+      "example_hu": "Vidéken nagyobb a nyugalom.",
+      "week": 7
+    },
+    {
+      "de": "der Platzmangel",
+      "hu": "helyhiány",
+      "cat": "Stadt és Land",
+      "example": "In großen Städten gibt es oft Platzmangel.",
+      "example_hu": "A nagyvárosokban gyakran helyhiány van.",
+      "week": 7
+    },
+    {
+      "de": "die Arbeitsmöglichkeit",
+      "hu": "munkalehetőség",
+      "cat": "Stadt és Land",
+      "example": "In der Stadt gibt es mehr Arbeitsmöglichkeiten.",
+      "example_hu": "A városban több munkalehetőség van.",
+      "week": 7
+    },
+    {
+      "de": "die Bildungsmöglichkeit",
+      "hu": "tanulási lehetőség",
+      "cat": "Stadt és Land",
+      "example": "Städte bieten viele Bildungsmöglichkeiten.",
+      "example_hu": "A városok sok tanulási lehetőséget kínálnak.",
+      "week": 7
+    },
+    {
+      "de": "der öffentliche Nahverkehr",
+      "hu": "tömegközlekedés",
+      "cat": "Stadt és Land",
+      "example": "Der öffentliche Nahverkehr ist in der Stadt besser.",
+      "example_hu": "A tömegközlekedés a városban jobb.",
+      "week": 7
+    },
+    {
+      "de": "die Dienstleistung",
+      "hu": "szolgáltatás",
+      "cat": "Stadt és Land",
+      "example": "In der Stadt gibt es viele Dienstleistungen.",
+      "example_hu": "A városban sok szolgáltatás van.",
+      "week": 7
+    },
+    {
+      "de": "die Fahrverbindung",
+      "hu": "közlekedési kapcsolat",
+      "cat": "Stadt és Land",
+      "example": "Auf dem Land sind die Fahrverbindungen manchmal schlechter.",
+      "example_hu": "Vidéken néha rosszabbak a közlekedési kapcsolatok.",
+      "week": 7
+    },
+    {
+      "de": "der Wasserturm",
+      "hu": "víztorony",
+      "cat": "Különleges lakóhely",
+      "example": "Familie Blum wohnt in einem Wasserturm.",
+      "example_hu": "A Blum család egy víztoronyban lakik.",
+      "week": 7
+    },
+    {
+      "de": "das Hausboot",
+      "hu": "lakóhajó",
+      "cat": "Különleges lakóhely",
+      "example": "Axel F. wohnt auf einem Hausboot.",
+      "example_hu": "Axel F. egy lakóhajón lakik.",
+      "week": 7
+    },
+    {
+      "de": "die Krämerbrücke",
+      "hu": "Krämerbrücke híd",
+      "cat": "Különleges lakóhely",
+      "example": "Kurt Mann wohnt auf der Krämerbrücke.",
+      "example_hu": "Kurt Mann a Krämerbrückén lakik.",
+      "week": 7
+    },
+    {
+      "de": "die Einzimmerwohnung",
+      "hu": "garzonlakás",
+      "cat": "Lakástípus",
+      "example": "Er wohnt in einer Einzimmerwohnung.",
+      "example_hu": "Egy garzonlakásban lakik.",
+      "week": 7
+    },
+    {
+      "de": "die Aussicht",
+      "hu": "kilátás",
+      "cat": "Lakásleírás",
+      "example": "Die Familie hat eine fantastische Aussicht.",
+      "example_hu": "A családnak fantasztikus kilátása van.",
+      "week": 7
+    },
+    {
+      "de": "der Nachbar",
+      "hu": "szomszéd",
+      "cat": "Lakóhely",
+      "example": "Sie haben keine Nachbarn.",
+      "example_hu": "Nincsenek szomszédaik.",
+      "week": 7
+    },
+    {
+      "de": "der Hafen",
+      "hu": "kikötő",
+      "cat": "Különleges lakóhely",
+      "example": "Das Hausboot liegt im Hamburger Hafen.",
+      "example_hu": "A lakóhajó a hamburgi kikötőben van.",
+      "week": 7
+    },
+    {
+      "de": "das Schiff",
+      "hu": "hajó",
+      "cat": "Különleges lakóhely",
+      "example": "Herr Fiz wohnt auf einem Schiff.",
+      "example_hu": "Fiz úr egy hajón lakik.",
+      "week": 7
+    },
+    {
+      "de": "umziehen",
+      "hu": "elköltözni, költözni",
+      "cat": "Múlt idő",
+      "example": "Dann sind wir in die Schweiz umgezogen.",
+      "example_hu": "Ezután Svájcba költöztünk.",
+      "week": 7
+    },
+    {
+      "de": "aufwachsen",
+      "hu": "felnőni",
+      "cat": "Múlt idő",
+      "example": "Ich bin in Spanien aufgewachsen.",
+      "example_hu": "Spanyolországban nőttem fel.",
+      "week": 7
+    },
+    {
+      "de": "ausgehen",
+      "hu": "elmenni szórakozni",
+      "cat": "Múlt idő",
+      "example": "Sie ist oft ausgegangen.",
+      "example_hu": "Gyakran eljárt szórakozni.",
+      "week": 7
+    },
+    {
+      "de": "vorbereiten",
+      "hu": "előkészíteni",
+      "cat": "Múlt idő",
+      "example": "Sie hat das Essen vorbereitet.",
+      "example_hu": "Előkészítette az ételt.",
+      "week": 7
+    },
+    {
+      "de": "einladen",
+      "hu": "meghívni",
+      "cat": "Múlt idő",
+      "example": "Sie hat Freunde zum Essen eingeladen.",
+      "example_hu": "Barátokat hívott meg vacsorára.",
+      "week": 7
     }
   ],
   "quiz": [
@@ -2472,6 +2944,11 @@ window.GERMAN_DATA = {
     {
       "week": 6,
       "title": "Das Wetter",
+      "level": "B1"
+    },
+    {
+      "week": 7,
+      "title": "Wohnen 2 – Stadt oder Land",
       "level": "B1"
     }
   ],
@@ -3468,6 +3945,463 @@ window.GERMAN_DATA = {
       ],
       "a": 0,
       "explain": "dass-mondatban a ragozott ige a mondat végére kerül: ..., dass es sehr warm ist."
+    },
+    {
+      "week": 7,
+      "type": "choice",
+      "q": "___ wohnst/lebst du?",
+      "opts": [
+        "Wo",
+        "Wohin",
+        "Woher",
+        "Wann"
+      ],
+      "a": 0,
+      "explain": "Helyre kérdezünk: Wo wohnst du?"
+    },
+    {
+      "week": 7,
+      "type": "choice",
+      "q": "___ wann wohnst du dort?",
+      "opts": [
+        "Seit",
+        "Um",
+        "An",
+        "Nach"
+      ],
+      "a": 0,
+      "explain": "Seit wann? = mióta? Folyamatosan fennálló helyzet kezdetére kérdez."
+    },
+    {
+      "week": 7,
+      "type": "choice",
+      "q": "___ groß ist deine Wohnung?",
+      "opts": [
+        "Wie",
+        "Was",
+        "Wo",
+        "Wie viele"
+      ],
+      "a": 0,
+      "explain": "Méretre a Wie groß? szerkezettel kérdezünk."
+    },
+    {
+      "week": 7,
+      "type": "choice",
+      "q": "___ viele Zimmer hat die Wohnung?",
+      "opts": [
+        "Wie",
+        "Was",
+        "Wo",
+        "Welche"
+      ],
+      "a": 0,
+      "explain": "Megszámlálható mennyiségre: Wie viele Zimmer?"
+    },
+    {
+      "week": 7,
+      "type": "choice",
+      "q": "___ es eine Bushaltestelle in der Nähe?",
+      "opts": [
+        "Gibt",
+        "Hat",
+        "Ist",
+        "Wohnt"
+      ],
+      "a": 0,
+      "explain": "Gibt es ...? = Van ...? / Található ...?"
+    },
+    {
+      "week": 7,
+      "type": "choice",
+      "q": "Ich bleibe heute zu Hause. – Wo oder Wohin?",
+      "opts": [
+        "Wo",
+        "Wohin"
+      ],
+      "a": 0,
+      "explain": "bleiben = maradni; helyet ír le: Wo?"
+    },
+    {
+      "week": 7,
+      "type": "choice",
+      "q": "Wir fahren im Sommer nach Österreich. – Wo oder Wohin?",
+      "opts": [
+        "Wo",
+        "Wohin"
+      ],
+      "a": 1,
+      "explain": "fahren + cél: Wohin? nach Österreich."
+    },
+    {
+      "week": 7,
+      "type": "choice",
+      "q": "Heute Abend gehen wir ins Theater. – Wo oder Wohin?",
+      "opts": [
+        "Wo",
+        "Wohin"
+      ],
+      "a": 1,
+      "explain": "ins = in das, irányt fejez ki: Wohin?"
+    },
+    {
+      "week": 7,
+      "type": "choice",
+      "q": "Ich habe das Poster an die Wand gehängt. – Wo oder Wohin?",
+      "opts": [
+        "Wo",
+        "Wohin"
+      ],
+      "a": 1,
+      "explain": "Valamit a falra akasztunk: irány, ezért an die Wand."
+    },
+    {
+      "week": 7,
+      "type": "choice",
+      "q": "Hast du meinen Schlüssel in meine Tasche gesteckt? – Wo oder Wohin?",
+      "opts": [
+        "Wo",
+        "Wohin"
+      ],
+      "a": 1,
+      "explain": "Valamit a táskába teszünk: Wohin? in meine Tasche."
+    },
+    {
+      "week": 7,
+      "type": "choice",
+      "q": "Im Sommer sitzen wir viel im Garten. – Wo oder Wohin?",
+      "opts": [
+        "Wo",
+        "Wohin"
+      ],
+      "a": 0,
+      "explain": "sitzen helyzetet ír le: Wo? im Garten."
+    },
+    {
+      "week": 7,
+      "type": "choice",
+      "q": "Wir laden Thomas in ein Restaurant ein. – Wo oder Wohin?",
+      "opts": [
+        "Wo",
+        "Wohin"
+      ],
+      "a": 1,
+      "explain": "in ein Restaurant Akkusativ; cél/hely, ahová meghívjuk."
+    },
+    {
+      "week": 7,
+      "type": "choice",
+      "q": "Ich treffe meinen Musiklehrer im Park. – Wo oder Wohin?",
+      "opts": [
+        "Wo",
+        "Wohin"
+      ],
+      "a": 0,
+      "explain": "A találkozás helyét írjuk le: Wo? im Park."
+    },
+    {
+      "week": 7,
+      "type": "choice",
+      "q": "Die CD liegt unter dem Tisch. – Wo oder Wohin?",
+      "opts": [
+        "Wo",
+        "Wohin"
+      ],
+      "a": 0,
+      "explain": "liegen = valahol fekszik: Wo? + Dativ."
+    },
+    {
+      "week": 7,
+      "type": "choice",
+      "q": "Mein Handy steckt in meiner Tasche. – Wo oder Wohin?",
+      "opts": [
+        "Wo",
+        "Wohin"
+      ],
+      "a": 0,
+      "explain": "stecken itt helyzetet ír le: Wo? in meiner Tasche."
+    },
+    {
+      "week": 7,
+      "type": "choice",
+      "q": "In meinem Zimmer hat nur ein Bild an der Wand gehangen. – Wo oder Wohin?",
+      "opts": [
+        "Wo",
+        "Wohin"
+      ],
+      "a": 0,
+      "explain": "Az állapot helyét írja le: an der Wand, Wo? + Dativ."
+    },
+    {
+      "week": 7,
+      "type": "text",
+      "q": "Die Zeitung ........................................dem Tisch.",
+      "answers": [
+        "liegt auf",
+        "liegt auf dem Tisch"
+      ],
+      "explain": "Wo? → Dativ: Die Zeitung liegt auf dem Tisch."
+    },
+    {
+      "week": 7,
+      "type": "text",
+      "q": "Das Tischchen mit dem Laptop ........................................ dem Sessel und der Couch.",
+      "answers": [
+        "steht zwischen",
+        "steht zwischen dem Sessel und der Couch"
+      ],
+      "explain": "Wo? → zwischen + Dativ."
+    },
+    {
+      "week": 7,
+      "type": "text",
+      "q": "Die Vorhänge ..........................................dem Fenster.",
+      "answers": [
+        "hängen vor",
+        "hängen vor dem Fenster"
+      ],
+      "explain": "Wo? → vor + Dativ."
+    },
+    {
+      "week": 7,
+      "type": "text",
+      "q": "Die Pflanze ...........................................dem Tischchen.",
+      "answers": [
+        "steht auf",
+        "steht auf dem Tischchen"
+      ],
+      "explain": "Wo? → auf + Dativ."
+    },
+    {
+      "week": 7,
+      "type": "text",
+      "q": "Die Bücher ..................................... dem Regal.",
+      "answers": [
+        "stehen in",
+        "stehen in dem Regal",
+        "stehen im Regal"
+      ],
+      "explain": "Wo? → in + Dativ; in dem = im."
+    },
+    {
+      "week": 7,
+      "type": "text",
+      "q": "Das Regal ........................der Wand.",
+      "answers": [
+        "hängt an",
+        "hängt an der Wand"
+      ],
+      "explain": "Wo? → an + Dativ."
+    },
+    {
+      "week": 7,
+      "type": "text",
+      "q": "Der Fernseher ..................................dem Sessel.",
+      "answers": [
+        "steht neben",
+        "steht neben dem Sessel"
+      ],
+      "explain": "Wo? → neben + Dativ."
+    },
+    {
+      "week": 7,
+      "type": "text",
+      "q": "Der Schuh .....................................dem Teppich.......................dem Tischchen.",
+      "answers": [
+        "liegt auf dem Teppich unter",
+        "liegt auf dem Teppich unter dem Tischchen"
+      ],
+      "explain": "Mindkét helyviszony Wo? kérdésre felel, ezért Dativ."
+    },
+    {
+      "week": 7,
+      "type": "text",
+      "q": "Die Blumen .................................der Vase.",
+      "answers": [
+        "stecken in",
+        "stecken in der Vase"
+      ],
+      "explain": "Wo? → in + Dativ."
+    },
+    {
+      "week": 7,
+      "type": "text",
+      "q": "Die Bilder ....................................der Wand.",
+      "answers": [
+        "hängen an",
+        "hängen an der Wand"
+      ],
+      "explain": "Wo? → an + Dativ."
+    },
+    {
+      "week": 7,
+      "type": "text",
+      "q": "Da ______ wir nur zwei Zimmer und keine Heizung. (haben im Präteritum)",
+      "answers": [
+        "hatten"
+      ],
+      "explain": "wir hatten = nekünk volt."
+    },
+    {
+      "week": 7,
+      "type": "text",
+      "q": "Aber da ______ es auch immer warm. (sein im Präteritum)",
+      "answers": [
+        "war"
+      ],
+      "explain": "es war = volt."
+    },
+    {
+      "week": 7,
+      "type": "text",
+      "q": "Da ______ alles fremd. (sein im Präteritum)",
+      "answers": [
+        "war"
+      ],
+      "explain": "alles war = minden ... volt."
+    },
+    {
+      "week": 7,
+      "type": "text",
+      "q": "Die Häuser ______ anders. (sein im Präteritum)",
+      "answers": [
+        "waren"
+      ],
+      "explain": "Többes szám: die Häuser waren."
+    },
+    {
+      "week": 7,
+      "type": "text",
+      "q": "Aber früher ______ ich ein Stadtmensch. (sein im Präteritum)",
+      "answers": [
+        "war"
+      ],
+      "explain": "ich war = én voltam."
+    },
+    {
+      "week": 7,
+      "type": "text",
+      "q": "Jeden Abend ______ etwas los. (sein im Präteritum)",
+      "answers": [
+        "war"
+      ],
+      "explain": "Es war etwas los = mindig történt valami / volt program."
+    },
+    {
+      "week": 7,
+      "type": "text",
+      "q": "Ich ______ eine Wohnung mitten im Zentrum. (haben im Präteritum)",
+      "answers": [
+        "hatte"
+      ],
+      "explain": "ich hatte = nekem volt."
+    },
+    {
+      "week": 7,
+      "type": "text",
+      "q": "Das ______ viel zu laut für mich. (sein im Präteritum)",
+      "answers": [
+        "war"
+      ],
+      "explain": "das war = az volt."
+    },
+    {
+      "week": 7,
+      "type": "text",
+      "q": "Sie ist mit zwölf Jahren in die Schweiz ____________. (kommen)",
+      "answers": [
+        "gekommen"
+      ],
+      "explain": "kommen Perfektben sein-nal: ist gekommen."
+    },
+    {
+      "week": 7,
+      "type": "text",
+      "q": "Sie hat drei Jahre im Stadtzentrum von Bern ____________. (wohnen)",
+      "answers": [
+        "gewohnt"
+      ],
+      "explain": "wohnen → hat gewohnt."
+    },
+    {
+      "week": 7,
+      "type": "text",
+      "q": "Sie hat dort gern ____________. (leben)",
+      "answers": [
+        "gelebt"
+      ],
+      "explain": "leben → hat gelebt."
+    },
+    {
+      "week": 7,
+      "type": "text",
+      "q": "Sie ist oft ____________. (ausgehen)",
+      "answers": [
+        "ausgegangen"
+      ],
+      "explain": "ausgehen → ist ausgegangen."
+    },
+    {
+      "week": 7,
+      "type": "text",
+      "q": "Sie hat Essen ____________. (vorbereiten)",
+      "answers": [
+        "vorbereitet"
+      ],
+      "explain": "vorbereiten → hat vorbereitet."
+    },
+    {
+      "week": 7,
+      "type": "text",
+      "q": "Sie hat Freunde ____________. (anrufen)",
+      "answers": [
+        "angerufen"
+      ],
+      "explain": "anrufen → hat angerufen."
+    },
+    {
+      "week": 7,
+      "type": "text",
+      "q": "Sie hat Freunde zum Essen ____________. (einladen)",
+      "answers": [
+        "eingeladen"
+      ],
+      "explain": "einladen → hat eingeladen."
+    },
+    {
+      "week": 7,
+      "type": "text",
+      "q": "Dann ist sie ____________ und wohnt jetzt auf dem Land. (umziehen)",
+      "answers": [
+        "umgezogen"
+      ],
+      "explain": "umziehen → ist umgezogen."
+    },
+    {
+      "week": 7,
+      "type": "choice",
+      "q": "Ich wohne lieber in der Stadt, weil es da einen Sportverein ___.",
+      "opts": [
+        "gibt",
+        "geben",
+        "gibt es",
+        "ist gibt"
+      ],
+      "a": 0,
+      "explain": "weil-mondatban a ragozott ige a végére kerül: ..., weil es da einen Sportverein gibt."
+    },
+    {
+      "week": 7,
+      "type": "choice",
+      "q": "Ich möchte nicht in der Stadt wohnen, weil ich dort nicht im Freien spielen ___.",
+      "opts": [
+        "kann",
+        "können",
+        "kann ich",
+        "spiele"
+      ],
+      "a": 0,
+      "explain": "Modaligénél a weil-mondat végén áll a ragozott modalige: ... spielen kann."
     }
   ]
 };
