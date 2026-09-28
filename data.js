@@ -2013,6 +2013,334 @@ window.GERMAN_DATA = {
       "example": "Mein Arbeitstag beginnt um halb neun.",
       "example_hu": "A munkanapom fél kilenckor kezdődik.",
       "week": 5
+    },
+    {
+      "de": "das Wetter",
+      "hu": "időjárás",
+      "cat": "Időjárás",
+      "example": "Wie ist das Wetter heute?",
+      "example_hu": "Milyen ma az idő?",
+      "week": 6
+    },
+    {
+      "de": "die Sonne",
+      "hu": "nap",
+      "cat": "Időjárás",
+      "example": "Die Sonne scheint.",
+      "example_hu": "Süt a nap.",
+      "week": 6
+    },
+    {
+      "de": "die Wolke",
+      "hu": "felhő",
+      "cat": "Időjárás",
+      "example": "Die Wolken bedecken den Himmel.",
+      "example_hu": "A felhők beborítják az eget.",
+      "week": 6
+    },
+    {
+      "de": "der Regen",
+      "hu": "eső",
+      "cat": "Időjárás",
+      "example": "Es regnet.",
+      "example_hu": "Esik az eső.",
+      "week": 6
+    },
+    {
+      "de": "das Gewitter",
+      "hu": "zivatar, vihar",
+      "cat": "Időjárás",
+      "example": "Es gibt ein Gewitter.",
+      "example_hu": "Zivatar van.",
+      "week": 6
+    },
+    {
+      "de": "der Wind",
+      "hu": "szél",
+      "cat": "Időjárás",
+      "example": "Der Wind weht.",
+      "example_hu": "Fúj a szél.",
+      "week": 6
+    },
+    {
+      "de": "der Schnee",
+      "hu": "hó",
+      "cat": "Időjárás",
+      "example": "Es schneit.",
+      "example_hu": "Havazik.",
+      "week": 6
+    },
+    {
+      "de": "der Nebel",
+      "hu": "köd",
+      "cat": "Időjárás",
+      "example": "Es liegt Nebel.",
+      "example_hu": "Köd van.",
+      "week": 6
+    },
+    {
+      "de": "der Hagel",
+      "hu": "jégeső",
+      "cat": "Időjárás",
+      "example": "Im Sommer kann es Hagel geben.",
+      "example_hu": "Nyáron lehet jégeső.",
+      "week": 6
+    },
+    {
+      "de": "die Kälte",
+      "hu": "hideg",
+      "cat": "Hőmérséklet",
+      "example": "Im Winter gibt es oft große Kälte.",
+      "example_hu": "Télen gyakran nagy hideg van.",
+      "week": 6
+    },
+    {
+      "de": "die Wärme",
+      "hu": "meleg",
+      "cat": "Hőmérséklet",
+      "example": "Im Frühling kommt die Wärme zurück.",
+      "example_hu": "Tavasszal visszatér a meleg.",
+      "week": 6
+    },
+    {
+      "de": "die Hitze",
+      "hu": "hőség",
+      "cat": "Hőmérséklet",
+      "example": "Im Sommer gibt es oft Hitze.",
+      "example_hu": "Nyáron gyakran hőség van.",
+      "week": 6
+    },
+    {
+      "de": "der Blitz",
+      "hu": "villám",
+      "cat": "Időjárás",
+      "example": "Es blitzt.",
+      "example_hu": "Villámlik.",
+      "week": 6
+    },
+    {
+      "de": "der Donner",
+      "hu": "mennydörgés",
+      "cat": "Időjárás",
+      "example": "Es donnert.",
+      "example_hu": "Dörög az ég.",
+      "week": 6
+    },
+    {
+      "de": "bewölkt",
+      "hu": "felhős",
+      "cat": "Időjárás leírása",
+      "example": "Der Himmel ist bewölkt.",
+      "example_hu": "Az ég felhős.",
+      "week": 6
+    },
+    {
+      "de": "wolkig",
+      "hu": "felhős",
+      "cat": "Időjárás leírása",
+      "example": "Es ist wolkig.",
+      "example_hu": "Felhős az idő.",
+      "week": 6
+    },
+    {
+      "de": "windig",
+      "hu": "szeles",
+      "cat": "Időjárás leírása",
+      "example": "Es ist windig.",
+      "example_hu": "Szeles az idő.",
+      "week": 6
+    },
+    {
+      "de": "heiter",
+      "hu": "derült",
+      "cat": "Időjárás leírása",
+      "example": "Es ist heiter.",
+      "example_hu": "Derült az idő.",
+      "week": 6
+    },
+    {
+      "de": "neblig",
+      "hu": "ködös",
+      "cat": "Időjárás leírása",
+      "example": "Es ist neblig.",
+      "example_hu": "Ködös az idő.",
+      "week": 6
+    },
+    {
+      "de": "sonnig",
+      "hu": "napos",
+      "cat": "Időjárás leírása",
+      "example": "Es ist sonnig.",
+      "example_hu": "Napos az idő.",
+      "week": 6
+    },
+    {
+      "de": "regnerisch",
+      "hu": "esős",
+      "cat": "Időjárás leírása",
+      "example": "Es ist regnerisch.",
+      "example_hu": "Esős az idő.",
+      "week": 6
+    },
+    {
+      "de": "stürmisch",
+      "hu": "viharos",
+      "cat": "Időjárás leírása",
+      "example": "Es ist stürmisch.",
+      "example_hu": "Viharos az idő.",
+      "week": 6
+    },
+    {
+      "de": "warm",
+      "hu": "meleg",
+      "cat": "Hőmérséklet",
+      "example": "Es ist warm.",
+      "example_hu": "Meleg van.",
+      "week": 6
+    },
+    {
+      "de": "heiß",
+      "hu": "forró",
+      "cat": "Hőmérséklet",
+      "example": "Es ist heiß.",
+      "example_hu": "Forróság van.",
+      "week": 6
+    },
+    {
+      "de": "kalt",
+      "hu": "hideg",
+      "cat": "Hőmérséklet",
+      "example": "Es ist mir kalt.",
+      "example_hu": "Fázom.",
+      "week": 6
+    },
+    {
+      "de": "der Himmel",
+      "hu": "égbolt",
+      "cat": "Időjárás",
+      "example": "Der Himmel ist bewölkt.",
+      "example_hu": "Az ég felhős.",
+      "week": 6
+    },
+    {
+      "de": "das Blatt",
+      "hu": "levél",
+      "cat": "Évszakok",
+      "example": "Im Herbst fallen die Blätter.",
+      "example_hu": "Ősszel lehullanak a levelek.",
+      "week": 6
+    },
+    {
+      "de": "der Baum",
+      "hu": "fa",
+      "cat": "Évszakok",
+      "example": "Im Frühling blühen die Bäume.",
+      "example_hu": "Tavasszal virágoznak a fák.",
+      "week": 6
+    },
+    {
+      "de": "der Frühling",
+      "hu": "tavasz",
+      "cat": "Évszakok",
+      "example": "Im Frühling wird es wärmer.",
+      "example_hu": "Tavasszal melegebb lesz.",
+      "week": 6
+    },
+    {
+      "de": "der Sommer",
+      "hu": "nyár",
+      "cat": "Évszakok",
+      "example": "Im Sommer ist es oft heiß.",
+      "example_hu": "Nyáron gyakran meleg van.",
+      "week": 6
+    },
+    {
+      "de": "der Herbst",
+      "hu": "ősz",
+      "cat": "Évszakok",
+      "example": "Im Herbst werden die Tage kürzer.",
+      "example_hu": "Ősszel rövidebbek lesznek a napok.",
+      "week": 6
+    },
+    {
+      "de": "der Winter",
+      "hu": "tél",
+      "cat": "Évszakok",
+      "example": "Im Winter kann es schneien.",
+      "example_hu": "Télen havazhat.",
+      "week": 6
+    },
+    {
+      "de": "die Jahreszeit",
+      "hu": "évszak",
+      "cat": "Évszakok",
+      "example": "Welche Jahreszeit magst du am liebsten?",
+      "example_hu": "Melyik évszakot szereted a legjobban?",
+      "week": 6
+    },
+    {
+      "de": "kürzer",
+      "hu": "rövidebb",
+      "cat": "Fokozás",
+      "example": "Die Tage werden kürzer.",
+      "example_hu": "A napok rövidebbek lesznek.",
+      "week": 6
+    },
+    {
+      "de": "länger",
+      "hu": "hosszabb",
+      "cat": "Fokozás",
+      "example": "Im Sommer werden die Tage länger.",
+      "example_hu": "Nyáron hosszabbak lesznek a napok.",
+      "week": 6
+    },
+    {
+      "de": "wärmer",
+      "hu": "melegebb",
+      "cat": "Fokozás",
+      "example": "Im Frühling wird es wärmer.",
+      "example_hu": "Tavasszal melegebb lesz.",
+      "week": 6
+    },
+    {
+      "de": "kälter",
+      "hu": "hidegebb",
+      "cat": "Fokozás",
+      "example": "Im Herbst wird es kälter.",
+      "example_hu": "Ősszel hidegebb lesz.",
+      "week": 6
+    },
+    {
+      "de": "größer",
+      "hu": "nagyobb",
+      "cat": "Fokozás",
+      "example": "Der Unterschied wird größer.",
+      "example_hu": "A különbség nagyobb lesz.",
+      "week": 6
+    },
+    {
+      "de": "schneller",
+      "hu": "gyorsabb",
+      "cat": "Fokozás",
+      "example": "Der Wind wird schneller.",
+      "example_hu": "A szél gyorsabb lesz.",
+      "week": 6
+    },
+    {
+      "de": "interessanter",
+      "hu": "érdekesebb",
+      "cat": "Fokozás",
+      "example": "Das Thema wird interessanter.",
+      "example_hu": "A téma érdekesebb lesz.",
+      "week": 6
+    },
+    {
+      "de": "glatt",
+      "hu": "csúszós",
+      "cat": "Időjárás leírása",
+      "example": "Im Winter ist es oft glatt.",
+      "example_hu": "Télen gyakran csúszós az út.",
+      "week": 6
     }
   ],
   "quiz": [
@@ -2139,6 +2467,11 @@ window.GERMAN_DATA = {
     {
       "week": 5,
       "title": "Mein Alltag und reflexive Verben",
+      "level": "B1"
+    },
+    {
+      "week": 6,
+      "title": "Das Wetter",
       "level": "B1"
     }
   ],
@@ -2952,6 +3285,189 @@ window.GERMAN_DATA = {
         "interessiere mich"
       ],
       "explain": "sich interessieren für + Akkusativ."
+    },
+    {
+      "week": 6,
+      "type": "choice",
+      "q": "Wie ist das Wetter heute? – Es ist ___.",
+      "opts": [
+        "sonnig",
+        "Sonne",
+        "scheint",
+        "Wetter"
+      ],
+      "a": 0,
+      "explain": "Időjárás leírására gyakori az „Es ist + melléknév”: Es ist sonnig."
+    },
+    {
+      "week": 6,
+      "type": "text",
+      "q": "Der ______ weht. Es ist windig.",
+      "answers": [
+        "Wind"
+      ],
+      "explain": "Az eredeti tananyag mintája: Der Wind weht. = Fúj a szél."
+    },
+    {
+      "week": 6,
+      "type": "text",
+      "q": "Die ______ scheint. Es ist sonnig.",
+      "answers": [
+        "Sonne"
+      ],
+      "explain": "Az eredeti tananyag mintája: Die Sonne scheint."
+    },
+    {
+      "week": 6,
+      "type": "choice",
+      "q": "Es ___ und donnert.",
+      "opts": [
+        "blitzt",
+        "regnet",
+        "schneit",
+        "weht"
+      ],
+      "a": 0,
+      "explain": "Zivatarnál: Es blitzt und donnert. = Villámlik és dörög."
+    },
+    {
+      "week": 6,
+      "type": "choice",
+      "q": "Der Himmel ist ___.",
+      "opts": [
+        "bewölkt",
+        "Wind",
+        "regnet",
+        "Sonne"
+      ],
+      "a": 0,
+      "explain": "bewölkt = felhős."
+    },
+    {
+      "week": 6,
+      "type": "choice",
+      "q": "Es ___ .",
+      "opts": [
+        "schneit",
+        "Schnee",
+        "neblig",
+        "Wind"
+      ],
+      "a": 0,
+      "explain": "A schneien személytelen időjárási ige: Es schneit."
+    },
+    {
+      "week": 6,
+      "type": "choice",
+      "q": "Es liegt Nebel. Es ist ___.",
+      "opts": [
+        "neblig",
+        "Nebel",
+        "bewölkt",
+        "heiter"
+      ],
+      "a": 0,
+      "explain": "Nebel → neblig: köd → ködös."
+    },
+    {
+      "week": 6,
+      "type": "text",
+      "q": "Im __________ werden die Tage kürzer und es wird kälter.",
+      "answers": [
+        "Herbst"
+      ],
+      "explain": "Ősszel rövidülnek a nappalok és hidegebb lesz: Im Herbst ..."
+    },
+    {
+      "week": 6,
+      "type": "choice",
+      "q": "kurz → ?",
+      "opts": [
+        "kürzer",
+        "kurzer",
+        "kurzerer",
+        "kürz"
+      ],
+      "a": 0,
+      "explain": "A középfok -er végződést kap, és itt umlaut is megjelenik: kurz → kürzer."
+    },
+    {
+      "week": 6,
+      "type": "choice",
+      "q": "warm → ?",
+      "opts": [
+        "wärmer",
+        "warmer",
+        "wärm",
+        "wärmerer"
+      ],
+      "a": 0,
+      "explain": "A tananyagban: warm → wärmer."
+    },
+    {
+      "week": 6,
+      "type": "choice",
+      "q": "kalt → ?",
+      "opts": [
+        "kälter",
+        "kalter",
+        "kälterer",
+        "kalt"
+      ],
+      "a": 0,
+      "explain": "A tananyagban: kalt → kälter."
+    },
+    {
+      "week": 6,
+      "type": "choice",
+      "q": "groß → ?",
+      "opts": [
+        "größer",
+        "großer",
+        "größerer",
+        "großter"
+      ],
+      "a": 0,
+      "explain": "A tananyagban: groß → größer."
+    },
+    {
+      "week": 6,
+      "type": "choice",
+      "q": "schnell → ?",
+      "opts": [
+        "schneller",
+        "schnellerer",
+        "schnell",
+        "schnellt"
+      ],
+      "a": 0,
+      "explain": "A szabályos középfok: schnell → schneller."
+    },
+    {
+      "week": 6,
+      "type": "choice",
+      "q": "„Es wird kälter.” Mit jelent?",
+      "opts": [
+        "Hidegebb lesz.",
+        "Hideg volt.",
+        "Havazni fog.",
+        "Fázom."
+      ],
+      "a": 0,
+      "explain": "Itt a werden jelentése: válik/lesz. Es wird kälter = Hidegebb lesz."
+    },
+    {
+      "week": 6,
+      "type": "choice",
+      "q": "Für den Sommer ist es typisch, dass es sehr warm ___.",
+      "opts": [
+        "ist",
+        "sein",
+        "wird ist",
+        "sind"
+      ],
+      "a": 0,
+      "explain": "dass-mondatban a ragozott ige a mondat végére kerül: ..., dass es sehr warm ist."
     }
   ]
 };
